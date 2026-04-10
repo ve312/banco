@@ -1,4 +1,22 @@
 package com.trinity.banco.domain.ports.repository;
 
+import com.trinity.banco.domain.model.Cliente;
+
+import java.util.List;
+import java.util.Optional;
+
 public interface ClienteRepository {
+    Cliente guardar(Cliente cliente);
+
+    Optional<Cliente> buscarPorId(Long id);
+
+    Optional<Cliente> buscarPorNumeroIdentificacion(String numeroIdentificacion);
+
+    List<Cliente> listar();
+
+    void eliminar(Long id);
+
+    boolean existePorNumeroIdentificacion(String numeroIdentificacion);
+
+    boolean existePorId(Long id);
 }
