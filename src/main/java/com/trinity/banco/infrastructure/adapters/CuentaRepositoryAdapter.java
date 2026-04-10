@@ -1,4 +1,53 @@
 package com.trinity.banco.infrastructure.adapters;
 
-public class CuentaRepositoryAdapter {
+import com.trinity.banco.domain.model.Cuenta;
+import com.trinity.banco.domain.ports.repository.CuentaRepository;
+import com.trinity.banco.infrastructure.adapters.mapper.CuentaMapper;
+import com.trinity.banco.infrastructure.repository.CuentaJpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@Repository
+public class CuentaRepositoryAdapter implements CuentaRepository {
+
+    private final CuentaJpaRepository jpaRepository;
+
+    public CuentaRepositoryAdapter(CuentaJpaRepository jpaRepository) {
+        this.jpaRepository = jpaRepository;
+    }
+
+
+    @Override
+    public Cuenta guardar(Cuenta cuenta) {
+        return CuentaMapper.toDomain(
+                jpaRepository.save(CuentaMapper.toEntity(cuenta))
+        );
+    }
+
+    @Override
+    public Optional<Cuenta> buscarPorNumeroCuenta(String numeroCuenta) {
+        return jpaRepository.findByNumeroCuenta(numeroCuenta)
+                .map(CuentaMapper::toDomain);
+    }
+
+    @Override
+    public boolean existePorNumeroCuenta(String numeroCuenta) {
+        return jpaRepository.existsByNumeroCuenta(numeroCuenta);
+    }
+
+    @Override
+    public List<Cuenta> listarPorClienteId(Long clienteId) {
+        return jpaRepository.findByClienteId(clienteId)
+                .stream()
+                .map(CuentaMapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean existePorClienteId(Long clienteId) {
+        return jpaRepository.existsByClienteId(clienteId);
+    }
 }
