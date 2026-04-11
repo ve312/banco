@@ -66,17 +66,17 @@ public class Cuenta {
     }
 
     public void depositar(BigDecimal monto) {
-        if (monto == null || monto.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new RuntimeException("Monto inválido");
-        }
+        validarCuentaActiva();
+        validarMonto(monto);
+
         this.saldo = this.saldo.add(monto);
         this.fechaModificacion = LocalDateTime.now();
     }
 
     public void retirar(BigDecimal monto) {
-        if (monto == null || monto.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new RuntimeException("Monto inválido");
-        }
+        validarCuentaActiva();
+        validarMonto(monto);
+
         if (this.esAhorros() && this.saldo.subtract(monto).compareTo(BigDecimal.ZERO) < 0) {
             throw new RuntimeException("Cuenta de ahorros no puede quedar en saldo negativo");
         }
@@ -86,5 +86,17 @@ public class Cuenta {
 
     public boolean esAhorros() {
         return this.tipoCuenta == TipoCuenta.AHORROS;
+    }
+
+    private void validarCuentaActiva() {
+        if (this.estado != EstadoCuenta.ACTIVA) {
+            throw new RuntimeException("La cuenta no está activa");
+        }
+    }
+
+    private void validarMonto(BigDecimal monto) {
+        if (monto == null || monto.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new RuntimeException("Monto inválido");
+        }
     }
 }
