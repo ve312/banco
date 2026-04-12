@@ -1,4 +1,4 @@
-package com.trinity.banco.rest.dto;
+package com.trinity.banco.rest.dto.request;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;

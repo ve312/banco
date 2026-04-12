@@ -1,9 +1,7 @@
-package com.trinity.banco.rest.dto;
+package com.trinity.banco.rest.dto.responses;
 
-import com.trinity.banco.domain.model.enums.TipoIdentificacion;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

@@ -1,6 +1,5 @@
-package com.trinity.banco.rest.dto;
+package com.trinity.banco.rest.dto.responses;
 
-import com.trinity.banco.domain.model.enums.TipoTransaccion;
 import lombok.Getter;
 import lombok.Setter;
 
