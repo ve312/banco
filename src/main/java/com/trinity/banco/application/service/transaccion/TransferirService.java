@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Service
@@ -25,9 +26,9 @@ public class TransferirService {
         this.transaccionRepository = transaccionRepository;
     }
 
-    public void ejecutar(String cuentaOrigenNumero,
-                         String cuentaDestinoNumero,
-                         BigDecimal monto) {
+    public List<Transaccion> ejecutar(String cuentaOrigenNumero,
+                                      String cuentaDestinoNumero,
+                                      BigDecimal monto) {
 
         CuentaValidator.validarMonto(monto);
 
@@ -78,5 +79,7 @@ public class TransferirService {
 
         transaccionRepository.guardar(transaccionOrigen);
         transaccionRepository.guardar(transaccionDestino);
+
+        return List.of(transaccionOrigen, transaccionDestino);
     }
 }

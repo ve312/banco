@@ -24,7 +24,7 @@ public class RetirarService {
         this.transaccionRepository = transaccionRepository;
     }
 
-    public void ejecutar(String numeroCuenta, BigDecimal monto) {
+    public Transaccion ejecutar(String numeroCuenta, BigDecimal monto) {
 
         CuentaValidator.validarMonto(monto);
 
@@ -51,5 +51,6 @@ public class RetirarService {
         );
 
         transaccionRepository.guardar(transaccion);
+        return transaccion;
     }
 }

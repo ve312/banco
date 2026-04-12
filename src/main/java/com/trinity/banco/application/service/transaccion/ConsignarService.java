@@ -25,7 +25,7 @@ public class ConsignarService {
         this.transaccionRepository = transaccionRepository;
     }
 
-    public void ejecutar(String numeroCuenta, BigDecimal monto) {
+    public Transaccion ejecutar(String numeroCuenta, BigDecimal monto) {
 
         CuentaValidator.validarMonto(monto);
 
@@ -52,5 +52,6 @@ public class ConsignarService {
         );
 
         transaccionRepository.guardar(transaccion);
+        return  transaccion;
     }
 }
