@@ -58,6 +58,9 @@ public class Cuenta {
     }
 
     public void cancelar() {
+        if (this.estado == EstadoCuenta.CANCELADA) {
+            throw new RuntimeException("La cuenta ya está cancelada");
+        }
         if (this.saldo.compareTo(BigDecimal.ZERO) != 0) {
             throw new RuntimeException("No se puede cancelar una cuenta con saldo diferente a 0");
         }
@@ -99,4 +102,5 @@ public class Cuenta {
             throw new RuntimeException("Monto inválido");
         }
     }
+
 }
