@@ -10,6 +10,7 @@ import com.trinity.banco.rest.dto.request.TransferenciaRequest;
 import com.trinity.banco.rest.dto.responses.TransaccionResponse;
 import com.trinity.banco.rest.mapper.TransaccionMapper;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,7 +48,7 @@ public class TransaccionController {
                 request.getMonto()
         );
 
-        return ResponseEntity.status(201)
+        return ResponseEntity.status(HttpStatus.CREATED)
                 .body(TransaccionMapper.toResponse(transaccion));
     }
 
@@ -83,7 +84,7 @@ public class TransaccionController {
                 .map(TransaccionMapper::toResponse)
                 .toList();
 
-        return ResponseEntity.status(201).body(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
 
