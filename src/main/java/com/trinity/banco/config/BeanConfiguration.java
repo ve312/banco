@@ -1,4 +1,4 @@
-package com.trinity.banco.infrastructure.config;
+package com.trinity.banco.config;
 
 import com.trinity.banco.domain.Service.NumeroCuentaGenerator;
 import com.trinity.banco.domain.ports.repository.CuentaRepository;

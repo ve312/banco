@@ -1,4 +1,4 @@
-package com.trinity.banco.exceptions;
+package com.trinity.banco.rest.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
