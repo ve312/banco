@@ -1,4 +1,4 @@
-package com.trinity.banco.service;
+package com.trinity.banco.service.transaccion;
 
 import com.trinity.banco.application.service.transaccion.ConsignarService;
 import com.trinity.banco.domain.model.Cuenta;
@@ -53,9 +53,6 @@ public class ConsignarServiceTest {
         );
     }
 
-    // =========================
-    // ESCENARIO EXITOSO
-    // =========================
     @Test
     void deberia_consignar_exitosamente() {
 
@@ -74,9 +71,6 @@ public class ConsignarServiceTest {
         verify(transaccionRepository).guardar(any());
     }
 
-    // =========================
-    // CUENTA NO EXISTE
-    // =========================
     @Test
     void deberia_lanzar_error_si_cuenta_no_existe() {
 
@@ -90,9 +84,6 @@ public class ConsignarServiceTest {
         assertEquals("Cuenta no encontrada", ex.getMessage());
     }
 
-    // =========================
-    // MONTO INVALIDO
-    // =========================
     @Test
     void deberia_lanzar_error_si_monto_es_invalido() {
 

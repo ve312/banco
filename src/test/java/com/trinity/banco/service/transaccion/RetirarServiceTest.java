@@ -1,4 +1,4 @@
-package com.trinity.banco.service;
+package com.trinity.banco.service.transaccion;
 
 import com.trinity.banco.application.service.transaccion.RetirarService;
 import com.trinity.banco.domain.model.Cuenta;
