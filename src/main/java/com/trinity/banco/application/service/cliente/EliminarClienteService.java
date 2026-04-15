@@ -1,6 +1,5 @@
 package com.trinity.banco.application.service.cliente;
 
-import com.trinity.banco.domain.model.Cliente;
 import com.trinity.banco.domain.ports.repository.ClienteRepository;
 import com.trinity.banco.domain.ports.repository.CuentaRepository;
 import org.springframework.stereotype.Service;

@@ -33,12 +33,6 @@ public class ClienteRepositoryAdapter implements ClienteRepository {
     }
 
     @Override
-    public Optional<Cliente> buscarPorNumeroIdentificacion(String numeroIdentificacion) {
-        return jpaRepository.findByNumeroIdentificacion(numeroIdentificacion)
-                .map(ClienteMapper::toDomain);
-    }
-
-    @Override
     public List<Cliente> listar() {
         return jpaRepository.findAll()
                 .stream()

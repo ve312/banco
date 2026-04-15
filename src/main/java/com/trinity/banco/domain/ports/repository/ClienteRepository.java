@@ -10,8 +10,6 @@ public interface ClienteRepository {
 
     Optional<Cliente> buscarPorId(Long id);
 
-    Optional<Cliente> buscarPorNumeroIdentificacion(String numeroIdentificacion);
-
     List<Cliente> listar();
 
     void eliminar(Long id);
