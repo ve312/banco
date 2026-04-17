@@ -2,7 +2,7 @@ package com.trinity.banco.application.validator;
 
 public class ClienteValidator {
     public static void validarEmail(String email) {
-        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9-]+\\.[A-Za-z]{2,}$";
         if (email == null || !email.matches(regex)) {
             throw new RuntimeException("El campo email es obligatorio y debe tener un formato válido");
         }
