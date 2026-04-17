@@ -2,6 +2,7 @@ package com.trinity.banco.application.service.cliente;
 
 import com.trinity.banco.domain.model.Cliente;
 import com.trinity.banco.domain.ports.repository.ClienteRepository;
+import com.trinity.banco.rest.exceptions.RecursoNoEncontradoException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,7 +15,7 @@ public class ObtenerClienteService {
 
     public Cliente ejecutar(Long id) {
         return clienteRepository.buscarPorId(id)
-                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+                .orElseThrow(() -> new RecursoNoEncontradoException("Cliente no encontrado"));
     }
 
 }

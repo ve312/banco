@@ -2,6 +2,7 @@ package com.trinity.banco.application.service.cliente;
 
 import com.trinity.banco.domain.ports.repository.ClienteRepository;
 import com.trinity.banco.domain.ports.repository.CuentaRepository;
+import com.trinity.banco.rest.exceptions.RecursoNoEncontradoException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,7 +20,7 @@ public class EliminarClienteService {
     public void ejecutar(Long clienteId) {
 
         if (!clienteRepository.existePorId(clienteId)) {
-            throw new RuntimeException("Cliente no encontrado");
+            throw new RecursoNoEncontradoException("Cliente no encontrado");
         }
 
         boolean tieneCuentas = cuentaRepository.existePorClienteId(clienteId);

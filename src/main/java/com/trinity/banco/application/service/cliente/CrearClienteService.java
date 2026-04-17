@@ -32,6 +32,9 @@ public class CrearClienteService {
         if (!fechaNacimiento.isBefore(LocalDate.now().minusYears(18))) {
             throw new RuntimeException("El cliente debe ser mayor de edad");
         }
+        if (fechaNacimiento.isBefore(LocalDate.now().minusYears(120))) {
+            throw new RuntimeException("Edad no válida");
+        }
 
         ClienteValidator.validarEmail(email);
         ClienteValidator.validarNombre(nombres,  apellidos);
