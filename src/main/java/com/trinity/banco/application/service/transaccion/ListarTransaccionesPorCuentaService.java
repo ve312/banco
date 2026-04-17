@@ -3,6 +3,7 @@ package com.trinity.banco.application.service.transaccion;
 import com.trinity.banco.domain.model.Transaccion;
 import com.trinity.banco.domain.ports.repository.CuentaRepository;
 import com.trinity.banco.domain.ports.repository.TransaccionRepository;
+import com.trinity.banco.rest.exceptions.RecursoNoEncontradoException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class ListarTransaccionesPorCuentaService {
         }
 
         cuentaRepository.buscarPorNumeroCuenta(numeroCuenta)
-                .orElseThrow(() -> new RuntimeException("La cuenta no existe"));
+                .orElseThrow(() -> new RecursoNoEncontradoException("Cuenta no encontrada"));
 
         return transaccionRepository.listarPorNumeroCuenta(numeroCuenta);
     }

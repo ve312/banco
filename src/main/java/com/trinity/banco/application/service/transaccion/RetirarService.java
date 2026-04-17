@@ -6,6 +6,7 @@ import com.trinity.banco.domain.model.Transaccion;
 import com.trinity.banco.domain.model.enums.TipoTransaccion;
 import com.trinity.banco.domain.ports.repository.CuentaRepository;
 import com.trinity.banco.domain.ports.repository.TransaccionRepository;
+import com.trinity.banco.rest.exceptions.RecursoNoEncontradoException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,7 @@ public class RetirarService {
         CuentaValidator.validarMonto(monto);
 
         Cuenta cuenta = cuentaRepository.buscarPorNumeroCuenta(numeroCuenta)
-                .orElseThrow(() -> new RuntimeException("Cuenta no encontrada"));
+                .orElseThrow(() -> new RecursoNoEncontradoException("Cuenta no encontrada"));
 
         BigDecimal saldoAnterior = cuenta.getSaldo();
 

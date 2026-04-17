@@ -6,6 +6,7 @@ import com.trinity.banco.domain.model.Transaccion;
 import com.trinity.banco.domain.model.enums.TipoTransaccion;
 import com.trinity.banco.domain.ports.repository.CuentaRepository;
 import com.trinity.banco.domain.ports.repository.TransaccionRepository;
+import com.trinity.banco.rest.exceptions.RecursoNoEncontradoException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -37,10 +38,10 @@ public class TransferirService {
         }
 
         Cuenta cuentaOrigen = cuentaRepository.buscarPorNumeroCuenta(cuentaOrigenNumero)
-                .orElseThrow(() -> new RuntimeException("Cuenta origen no encontrada"));
+                .orElseThrow(() -> new RecursoNoEncontradoException("Cuenta origen no encontrada"));
 
         Cuenta cuentaDestino = cuentaRepository.buscarPorNumeroCuenta(cuentaDestinoNumero)
-                .orElseThrow(() -> new RuntimeException("Cuenta destino no encontrada"));
+                .orElseThrow(() -> new RecursoNoEncontradoException("Cuenta destino no encontrada"));
 
 
         BigDecimal saldoAnteriorOrigen = cuentaOrigen.getSaldo();
