@@ -4,6 +4,19 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### Logs ###
+*.log
+
+### OS ###
+.DS_Store
+
+### Env ###
+.env
+
+### Build ###
+*.jar
+*.war
+
 ### STS ###
 .apt_generated
 .classpath
