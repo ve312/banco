@@ -1,4 +1,4 @@
-package com.trinity.banco.rest.dto.request;
+package com.trinity.banco.cliente.infrastructure.inbound.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

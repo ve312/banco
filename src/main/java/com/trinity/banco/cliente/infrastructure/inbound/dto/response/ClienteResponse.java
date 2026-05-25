@@ -1,4 +1,4 @@
-package com.trinity.banco.rest.dto.responses;
+package com.trinity.banco.cliente.infrastructure.inbound.dto.response;
 
 import lombok.Getter;
 import lombok.Setter;

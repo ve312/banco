@@ -1,11 +1,11 @@
-package com.trinity.banco.rest.controller;
+package com.trinity.banco.cliente.infrastructure.inbound;
 
 import com.trinity.banco.cliente.application.usecases.*;
 import com.trinity.banco.cliente.domain.model.Cliente;
-import com.trinity.banco.rest.dto.request.ActualizarClienteRequest;
-import com.trinity.banco.rest.dto.request.CrearClienteRequest;
-import com.trinity.banco.rest.dto.responses.ClienteResponse;
-import com.trinity.banco.rest.mapper.ClienteMapper;
+import com.trinity.banco.cliente.infrastructure.inbound.dto.request.ActualizarClienteRequest;
+import com.trinity.banco.cliente.infrastructure.inbound.dto.request.CrearClienteRequest;
+import com.trinity.banco.cliente.infrastructure.inbound.dto.response.ClienteResponse;
+import com.trinity.banco.cliente.infrastructure.inbound.mappers.ClienteMapper;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,7 @@
-package com.trinity.banco.rest.mapper;
+package com.trinity.banco.transaccion.infrastructure.inbound.mappers;
 
 import com.trinity.banco.transaccion.domain.model.Transaccion;
-import com.trinity.banco.rest.dto.responses.TransaccionResponse;
+import com.trinity.banco.transaccion.infrastructure.inbound.dto.response.TransaccionResponse;
 
 public class TransaccionMapper {
     private TransaccionMapper() {

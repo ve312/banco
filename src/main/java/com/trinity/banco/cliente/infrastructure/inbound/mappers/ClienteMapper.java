@@ -1,8 +1,8 @@
-package com.trinity.banco.rest.mapper;
+package com.trinity.banco.cliente.infrastructure.inbound.mappers;
 
 import com.trinity.banco.cliente.domain.model.Cliente;
 import com.trinity.banco.cliente.domain.model.enums.TipoIdentificacion;
-import com.trinity.banco.rest.dto.responses.ClienteResponse;
+import com.trinity.banco.cliente.infrastructure.inbound.dto.response.ClienteResponse;
 
 public class ClienteMapper {
 

@@ -1,14 +1,14 @@
-package com.trinity.banco.rest.controller;
+package com.trinity.banco.transaccion.infrastructure.inbound;
 
 import com.trinity.banco.transaccion.application.usecases.ConsignarService;
 import com.trinity.banco.transaccion.application.usecases.ListarTransaccionesPorCuentaService;
 import com.trinity.banco.transaccion.application.usecases.RetirarService;
 import com.trinity.banco.transaccion.application.usecases.TransferirService;
 import com.trinity.banco.transaccion.domain.model.Transaccion;
-import com.trinity.banco.rest.dto.request.MovimientoRequest;
-import com.trinity.banco.rest.dto.request.TransferenciaRequest;
-import com.trinity.banco.rest.dto.responses.TransaccionResponse;
-import com.trinity.banco.rest.mapper.TransaccionMapper;
+import com.trinity.banco.transaccion.infrastructure.inbound.dto.request.MovimientoRequest;
+import com.trinity.banco.transaccion.infrastructure.inbound.dto.request.TransferenciaRequest;
+import com.trinity.banco.transaccion.infrastructure.inbound.dto.response.TransaccionResponse;
+import com.trinity.banco.transaccion.infrastructure.inbound.mappers.TransaccionMapper;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

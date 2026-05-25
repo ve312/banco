@@ -1,10 +1,10 @@
-package com.trinity.banco.rest.controller;
+package com.trinity.banco.cuenta.infrastructure.inbound;
 
 import com.trinity.banco.cuenta.application.usecases.*;
 import com.trinity.banco.cuenta.domain.model.Cuenta;
-import com.trinity.banco.rest.dto.request.CrearCuentaRequest;
-import com.trinity.banco.rest.dto.responses.CuentaResponse;
-import com.trinity.banco.rest.mapper.CuentaMapper;
+import com.trinity.banco.cuenta.infrastructure.inbound.dto.request.CrearCuentaRequest;
+import com.trinity.banco.cuenta.infrastructure.inbound.dto.response.CuentaResponse;
+import com.trinity.banco.cuenta.infrastructure.outbound.mappers.CuentaMapper;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
