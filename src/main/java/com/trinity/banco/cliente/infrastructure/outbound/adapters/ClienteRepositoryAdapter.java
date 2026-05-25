@@ -1,10 +1,10 @@
-package com.trinity.banco.infrastructure.adapters;
+package com.trinity.banco.cliente.infrastructure.outbound.adapters;
 
-import com.trinity.banco.domain.model.Cliente;
-import com.trinity.banco.domain.ports.repository.ClienteRepository;
-import com.trinity.banco.infrastructure.adapters.mapper.ClienteMapper;
-import com.trinity.banco.infrastructure.entity.ClienteEntity;
-import com.trinity.banco.infrastructure.repository.JpaClienteRepository;
+import com.trinity.banco.cliente.domain.model.Cliente;
+import com.trinity.banco.cliente.domain.ports.ClienteRepository;
+import com.trinity.banco.cliente.infrastructure.outbound.persistence.mappers.ClienteMapper;
+import com.trinity.banco.cliente.infrastructure.outbound.persistence.entity.ClienteEntity;
+import com.trinity.banco.cliente.infrastructure.outbound.persistence.jpaRepository.JpaClienteRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

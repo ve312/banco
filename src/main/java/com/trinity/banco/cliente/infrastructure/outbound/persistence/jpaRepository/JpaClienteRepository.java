@@ -1,9 +1,7 @@
-package com.trinity.banco.infrastructure.repository;
+package com.trinity.banco.cliente.infrastructure.outbound.persistence.jpaRepository;
 
-import com.trinity.banco.infrastructure.entity.ClienteEntity;
+import com.trinity.banco.cliente.infrastructure.outbound.persistence.entity.ClienteEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.Optional;
 
 public interface JpaClienteRepository extends JpaRepository<ClienteEntity, Long> {
     boolean existsByNumeroIdentificacion(String numeroIdentificacion);

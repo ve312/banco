@@ -1,7 +1,7 @@
-package com.trinity.banco.transaccion.infrastructure.outbound.mappers;
+package com.trinity.banco.transaccion.infrastructure.outbound.persistence.mappers;
 
 import com.trinity.banco.transaccion.domain.model.Transaccion;
-import com.trinity.banco.infrastructure.entity.TransaccionEntity;
+import com.trinity.banco.transaccion.infrastructure.outbound.persistence.entity.TransaccionEntity;
 
 public class TransaccionMapper {
     public static TransaccionEntity toEntity(Transaccion transaccion) {

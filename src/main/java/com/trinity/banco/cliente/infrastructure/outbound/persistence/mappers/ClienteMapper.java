@@ -1,7 +1,7 @@
-package com.trinity.banco.cliente.infrastructure.outbound.persistence;
+package com.trinity.banco.cliente.infrastructure.outbound.persistence.mappers;
 
 import com.trinity.banco.cliente.domain.model.Cliente;
-import com.trinity.banco.infrastructure.entity.ClienteEntity;
+import com.trinity.banco.cliente.infrastructure.outbound.persistence.entity.ClienteEntity;
 
 public class ClienteMapper {
     public static Cliente toDomain(ClienteEntity entity) {

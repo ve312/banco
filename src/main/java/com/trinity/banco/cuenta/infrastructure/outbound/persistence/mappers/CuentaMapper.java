@@ -1,7 +1,7 @@
-package com.trinity.banco.cuenta.infrastructure.outbound.mappers;
+package com.trinity.banco.cuenta.infrastructure.outbound.persistence.mappers;
 
 import com.trinity.banco.cuenta.domain.model.Cuenta;
-import com.trinity.banco.infrastructure.entity.CuentaEntity;
+import com.trinity.banco.cuenta.infrastructure.outbound.persistence.entity.CuentaEntity;
 
 public class CuentaMapper {
     private CuentaMapper() {}

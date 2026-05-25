@@ -1,4 +1,4 @@
-package com.trinity.banco.infrastructure.entity;
+package com.trinity.banco.cuenta.infrastructure.outbound.persistence.entity;
 
 import com.trinity.banco.cuenta.domain.model.enums.EstadoCuenta;
 import com.trinity.banco.cuenta.domain.model.enums.TipoCuenta;

@@ -1,8 +1,8 @@
-package com.trinity.banco.rest.mapper;
+package com.trinity.banco.cuenta.infrastructure.outbound.mappers;
 
 import com.trinity.banco.cuenta.domain.model.Cuenta;
 import com.trinity.banco.cuenta.domain.model.enums.TipoCuenta;
-import com.trinity.banco.rest.dto.responses.CuentaResponse;
+import com.trinity.banco.cuenta.infrastructure.inbound.dto.response.CuentaResponse;
 
 public class CuentaMapper {
     private CuentaMapper() {

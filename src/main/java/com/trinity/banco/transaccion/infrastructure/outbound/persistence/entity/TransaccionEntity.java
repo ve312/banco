@@ -1,4 +1,4 @@
-package com.trinity.banco.infrastructure.entity;
+package com.trinity.banco.transaccion.infrastructure.outbound.persistence.entity;
 
 import com.trinity.banco.transaccion.domain.model.enums.TipoTransaccion;
 import jakarta.persistence.*;

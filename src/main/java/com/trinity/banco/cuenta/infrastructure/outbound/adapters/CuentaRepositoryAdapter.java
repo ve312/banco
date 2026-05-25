@@ -1,9 +1,9 @@
-package com.trinity.banco.infrastructure.adapters;
+package com.trinity.banco.cuenta.infrastructure.outbound.adapters;
 
-import com.trinity.banco.domain.model.Cuenta;
-import com.trinity.banco.domain.ports.repository.CuentaRepository;
-import com.trinity.banco.infrastructure.adapters.mapper.CuentaMapper;
-import com.trinity.banco.infrastructure.repository.CuentaJpaRepository;
+import com.trinity.banco.cuenta.domain.model.Cuenta;
+import com.trinity.banco.cuenta.domain.ports.CuentaRepository;
+import com.trinity.banco.cuenta.infrastructure.outbound.persistence.mappers.CuentaMapper;
+import com.trinity.banco.cuenta.infrastructure.outbound.persistence.jpaRepository.CuentaJpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

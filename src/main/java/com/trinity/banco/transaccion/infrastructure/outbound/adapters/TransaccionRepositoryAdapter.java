@@ -1,9 +1,9 @@
-package com.trinity.banco.infrastructure.adapters;
+package com.trinity.banco.transaccion.infrastructure.outbound.adapters;
 
-import com.trinity.banco.domain.model.Transaccion;
-import com.trinity.banco.domain.ports.repository.TransaccionRepository;
-import com.trinity.banco.infrastructure.adapters.mapper.TransaccionMapper;
-import com.trinity.banco.infrastructure.repository.TransaccionJpaRepository;
+import com.trinity.banco.transaccion.domain.model.Transaccion;
+import com.trinity.banco.transaccion.domain.ports.TransaccionRepository;
+import com.trinity.banco.transaccion.infrastructure.outbound.persistence.mappers.TransaccionMapper;
+import com.trinity.banco.transaccion.infrastructure.outbound.persistence.jpaRepository.TransaccionJpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

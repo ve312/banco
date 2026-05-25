@@ -1,6 +1,6 @@
-package com.trinity.banco.infrastructure.repository;
+package com.trinity.banco.cuenta.infrastructure.outbound.persistence.jpaRepository;
 
-import com.trinity.banco.infrastructure.entity.CuentaEntity;
+import com.trinity.banco.cuenta.infrastructure.outbound.persistence.entity.CuentaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
