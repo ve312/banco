@@ -1,12 +1,12 @@
 package com.trinity.banco.controller;
 
-import com.trinity.banco.application.service.transaccion.ConsignarService;
-import com.trinity.banco.application.service.transaccion.ListarTransaccionesPorCuentaService;
-import com.trinity.banco.application.service.transaccion.RetirarService;
-import com.trinity.banco.application.service.transaccion.TransferirService;
-import com.trinity.banco.domain.model.Transaccion;
-import com.trinity.banco.domain.model.enums.TipoTransaccion;
-import com.trinity.banco.rest.controller.TransaccionController;
+import com.trinity.banco.transaccion.application.usecases.ConsignarService;
+import com.trinity.banco.transaccion.application.usecases.ListarTransaccionesPorCuentaService;
+import com.trinity.banco.transaccion.application.usecases.RetirarService;
+import com.trinity.banco.transaccion.application.usecases.TransferirService;
+import com.trinity.banco.transaccion.domain.model.Transaccion;
+import com.trinity.banco.transaccion.domain.model.enums.TipoTransaccion;
+import com.trinity.banco.transaccion.infrastructure.inbound.TransaccionController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;

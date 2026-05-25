@@ -1,9 +1,9 @@
 package com.trinity.banco.service.cliente;
 
-import com.trinity.banco.application.service.cliente.CrearClienteService;
-import com.trinity.banco.domain.model.Cliente;
-import com.trinity.banco.domain.model.enums.TipoIdentificacion;
-import com.trinity.banco.domain.ports.repository.ClienteRepository;
+import com.trinity.banco.cliente.application.usecases.CrearClienteService;
+import com.trinity.banco.cliente.domain.model.Cliente;
+import com.trinity.banco.cliente.domain.model.enums.TipoIdentificacion;
+import com.trinity.banco.cliente.domain.ports.ClienteRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

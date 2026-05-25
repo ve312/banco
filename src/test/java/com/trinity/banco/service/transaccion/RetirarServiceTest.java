@@ -1,12 +1,12 @@
 package com.trinity.banco.service.transaccion;
 
-import com.trinity.banco.application.service.transaccion.RetirarService;
-import com.trinity.banco.domain.model.Cuenta;
-import com.trinity.banco.domain.model.Transaccion;
-import com.trinity.banco.domain.model.enums.EstadoCuenta;
-import com.trinity.banco.domain.model.enums.TipoCuenta;
-import com.trinity.banco.domain.ports.repository.CuentaRepository;
-import com.trinity.banco.domain.ports.repository.TransaccionRepository;
+import com.trinity.banco.transaccion.application.usecases.RetirarService;
+import com.trinity.banco.cuenta.domain.model.Cuenta;
+import com.trinity.banco.transaccion.domain.model.Transaccion;
+import com.trinity.banco.cuenta.domain.model.enums.EstadoCuenta;
+import com.trinity.banco.cuenta.domain.model.enums.TipoCuenta;
+import com.trinity.banco.cuenta.domain.ports.CuentaRepository;
+import com.trinity.banco.transaccion.domain.ports.TransaccionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

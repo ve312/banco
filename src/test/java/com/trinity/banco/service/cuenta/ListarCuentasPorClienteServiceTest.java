@@ -1,9 +1,9 @@
 package com.trinity.banco.service.cuenta;
 
-import com.trinity.banco.application.service.cuenta.ListarCuentasPorClienteService;
-import com.trinity.banco.domain.model.Cuenta;
-import com.trinity.banco.domain.ports.repository.ClienteRepository;
-import com.trinity.banco.domain.ports.repository.CuentaRepository;
+import com.trinity.banco.cuenta.application.usecases.ListarCuentasPorClienteService;
+import com.trinity.banco.cuenta.domain.model.Cuenta;
+import com.trinity.banco.cliente.domain.ports.ClienteRepository;
+import com.trinity.banco.cuenta.domain.ports.CuentaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

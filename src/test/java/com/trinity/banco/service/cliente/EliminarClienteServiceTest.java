@@ -1,8 +1,8 @@
 package com.trinity.banco.service.cliente;
 
-import com.trinity.banco.application.service.cliente.EliminarClienteService;
-import com.trinity.banco.domain.ports.repository.ClienteRepository;
-import com.trinity.banco.domain.ports.repository.CuentaRepository;
+import com.trinity.banco.cliente.application.usecases.EliminarClienteService;
+import com.trinity.banco.cliente.domain.ports.ClienteRepository;
+import com.trinity.banco.cuenta.domain.ports.CuentaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

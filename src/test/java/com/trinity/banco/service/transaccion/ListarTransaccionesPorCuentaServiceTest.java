@@ -1,10 +1,10 @@
 package com.trinity.banco.service.transaccion;
 
-import com.trinity.banco.application.service.transaccion.ListarTransaccionesPorCuentaService;
-import com.trinity.banco.domain.model.Cuenta;
-import com.trinity.banco.domain.model.Transaccion;
-import com.trinity.banco.domain.ports.repository.CuentaRepository;
-import com.trinity.banco.domain.ports.repository.TransaccionRepository;
+import com.trinity.banco.transaccion.application.usecases.ListarTransaccionesPorCuentaService;
+import com.trinity.banco.cuenta.domain.model.Cuenta;
+import com.trinity.banco.transaccion.domain.model.Transaccion;
+import com.trinity.banco.cuenta.domain.ports.CuentaRepository;
+import com.trinity.banco.transaccion.domain.ports.TransaccionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
