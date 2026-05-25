@@ -1,7 +1,7 @@
-package com.trinity.banco.domain.Service;
+package com.trinity.banco.cuenta.application;
 
-import com.trinity.banco.domain.model.enums.TipoCuenta;
-import com.trinity.banco.domain.ports.repository.CuentaRepository;
+import com.trinity.banco.cuenta.domain.model.enums.TipoCuenta;
+import com.trinity.banco.cuenta.domain.ports.CuentaRepository;
 
 import java.util.Random;
 

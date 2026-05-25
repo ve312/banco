@@ -1,6 +1,6 @@
-package com.trinity.banco.domain.ports.repository;
+package com.trinity.banco.cuenta.domain.ports;
 
-import com.trinity.banco.domain.model.Cuenta;
+import com.trinity.banco.cuenta.domain.model.Cuenta;
 
 import java.util.List;
 import java.util.Optional;

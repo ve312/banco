@@ -1,4 +1,4 @@
-package com.trinity.banco.application.validator;
+package com.trinity.banco.cliente.application.validators;
 
 public class ClienteValidator {
     public static void validarEmail(String email) {

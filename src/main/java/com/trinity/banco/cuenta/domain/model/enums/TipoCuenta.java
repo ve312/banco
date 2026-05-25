@@ -1,4 +1,4 @@
-package com.trinity.banco.domain.model.enums;
+package com.trinity.banco.cuenta.domain.model.enums;
 
 public enum TipoCuenta {
     AHORROS,

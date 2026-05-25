@@ -1,6 +1,6 @@
-package com.trinity.banco.domain.model;
+package com.trinity.banco.cliente.domain.model;
 
-import com.trinity.banco.domain.model.enums.TipoIdentificacion;
+import com.trinity.banco.cliente.domain.model.enums.TipoIdentificacion;
 import lombok.Getter;
 
 import java.time.LocalDate;
