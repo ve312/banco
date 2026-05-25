@@ -1,7 +1,7 @@
-package com.trinity.banco.config;
+package com.trinity.banco.shared.config;
 
-import com.trinity.banco.domain.Service.NumeroCuentaGenerator;
-import com.trinity.banco.domain.ports.repository.CuentaRepository;
+import com.trinity.banco.cuenta.application.NumeroCuentaGenerator;
+import com.trinity.banco.cuenta.domain.ports.CuentaRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

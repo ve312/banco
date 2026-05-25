@@ -1,4 +1,4 @@
-package com.trinity.banco.rest.exceptions;
+package com.trinity.banco.shared.errors;
 
 public class RecursoNoEncontradoException extends RuntimeException {
     public RecursoNoEncontradoException(String mensaje) {
