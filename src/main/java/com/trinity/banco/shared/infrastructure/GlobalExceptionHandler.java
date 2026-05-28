@@ -1,5 +1,7 @@
-package com.trinity.banco.shared.errors;
+package com.trinity.banco.shared.infrastructure;
 
+import com.trinity.banco.shared.domain.errors.ApiError;
+import com.trinity.banco.shared.domain.errors.RecursoNoEncontradoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

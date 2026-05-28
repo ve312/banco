@@ -1,4 +1,4 @@
-package com.trinity.banco.shared.errors;
+package com.trinity.banco.shared.domain.errors;
 
 import lombok.Getter;
 
