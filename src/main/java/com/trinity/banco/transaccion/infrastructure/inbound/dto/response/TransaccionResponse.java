@@ -17,4 +17,5 @@ public class TransaccionResponse {
     private BigDecimal saldoPosterior;
     private LocalDateTime fecha;
     private String numeroCuentaRelacionada;
+    private BigDecimal impuesto;
 }

@@ -23,6 +23,7 @@ public class TransaccionMapper {
         response.setSaldoPosterior(transaccion.getSaldoPosterior());
         response.setFecha(transaccion.getFecha());
         response.setNumeroCuentaRelacionada(transaccion.getNumeroCuentaRelacionada());
+        response.setImpuesto(transaccion.getImpuesto());
 
         return response;
     }

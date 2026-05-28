@@ -32,6 +32,8 @@ public class TransaccionEntity {
 
     private String numeroCuentaRelacionada;
 
+    private BigDecimal impuesto;
+
     public TransaccionEntity() {}
 
 }

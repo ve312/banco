@@ -2,6 +2,7 @@ package com.trinity.banco.transaccion.application.usecases;
 
 import com.trinity.banco.cuenta.application.validators.CuentaValidator;
 import com.trinity.banco.cuenta.domain.model.Cuenta;
+import com.trinity.banco.transaccion.application.util.GmfCalculator;
 import com.trinity.banco.transaccion.domain.model.Transaccion;
 import com.trinity.banco.transaccion.domain.model.enums.TipoTransaccion;
 import com.trinity.banco.cuenta.domain.ports.CuentaRepository;
@@ -31,11 +32,15 @@ public class RetirarUseCase {
                 .orElseThrow(() -> new RecursoNoEncontradoException("Cuenta no encontrada"));
 
         CuentaValidator.validarCuentaActiva(cuenta);
-        CuentaValidator.validarSaldoDisponible(cuenta, monto);
+
+        BigDecimal gmf = GmfCalculator.calcularGmf(cuenta, monto);
+        BigDecimal totalDebito = monto.add(gmf);
+
+        CuentaValidator.validarSaldoDisponible(cuenta, totalDebito);
 
         BigDecimal saldoAnterior = cuenta.getSaldo();
 
-        cuenta.setSaldo(saldoAnterior.subtract(monto));
+        cuenta.setSaldo(saldoAnterior.subtract(totalDebito));
         cuenta.setFechaModificacion(LocalDateTime.now());
 
         BigDecimal saldoPosterior = cuenta.getSaldo();
@@ -50,7 +55,8 @@ public class RetirarUseCase {
                 saldoAnterior,
                 saldoPosterior,
                 LocalDateTime.now(),
-                null
+                null,
+                gmf
         );
 
         transaccionRepository.guardar(transaccion);

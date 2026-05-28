@@ -16,6 +16,7 @@ public class Transaccion {
     private final BigDecimal saldoPosterior;
     private final LocalDateTime fecha;
     private final String numeroCuentaRelacionada;
+    private final BigDecimal impuesto;
 
     public Transaccion(Long id,
                        String numeroCuenta,
@@ -25,6 +26,19 @@ public class Transaccion {
                        BigDecimal saldoPosterior,
                        LocalDateTime fecha,
                        String numeroCuentaRelacionada) {
+        this(id, numeroCuenta, tipoTransaccion, monto, saldoAnterior, saldoPosterior,
+                fecha, numeroCuentaRelacionada, BigDecimal.ZERO);
+    }
+
+    public Transaccion(Long id,
+                       String numeroCuenta,
+                       TipoTransaccion tipoTransaccion,
+                       BigDecimal monto,
+                       BigDecimal saldoAnterior,
+                       BigDecimal saldoPosterior,
+                       LocalDateTime fecha,
+                       String numeroCuentaRelacionada,
+                       BigDecimal impuesto) {
 
         this.id = id;
         this.numeroCuenta = numeroCuenta;
@@ -34,5 +48,6 @@ public class Transaccion {
         this.saldoPosterior = saldoPosterior;
         this.fecha = fecha;
         this.numeroCuentaRelacionada = numeroCuentaRelacionada;
+        this.impuesto = impuesto;
     }
 }

@@ -2,6 +2,7 @@ package com.trinity.banco.transaccion.application.usecases;
 
 import com.trinity.banco.cuenta.application.validators.CuentaValidator;
 import com.trinity.banco.cuenta.domain.model.Cuenta;
+import com.trinity.banco.transaccion.application.util.GmfCalculator;
 import com.trinity.banco.transaccion.domain.model.Transaccion;
 import com.trinity.banco.transaccion.domain.model.enums.TipoTransaccion;
 import com.trinity.banco.cuenta.domain.ports.CuentaRepository;
@@ -43,12 +44,23 @@ public class TransferirUseCase {
 
         CuentaValidator.validarCuentaActiva(cuentaOrigen);
         CuentaValidator.validarCuentaActiva(cuentaDestino);
-        CuentaValidator.validarSaldoDisponible(cuentaOrigen, monto);
+
+        boolean mismoCliente = cuentaOrigen.getClienteId().equals(cuentaDestino.getClienteId());
+
+        BigDecimal gmf = BigDecimal.ZERO;
+        BigDecimal totalDebito = monto;
+
+        if (!mismoCliente) {
+            gmf = GmfCalculator.calcularGmf(cuentaOrigen, monto);
+            totalDebito = monto.add(gmf);
+        }
+
+        CuentaValidator.validarSaldoDisponible(cuentaOrigen, totalDebito);
 
         BigDecimal saldoAnteriorOrigen = cuentaOrigen.getSaldo();
         BigDecimal saldoAnteriorDestino = cuentaDestino.getSaldo();
 
-        cuentaOrigen.setSaldo(saldoAnteriorOrigen.subtract(monto));
+        cuentaOrigen.setSaldo(saldoAnteriorOrigen.subtract(totalDebito));
         cuentaOrigen.setFechaModificacion(LocalDateTime.now());
 
         cuentaDestino.setSaldo(saldoAnteriorDestino.add(monto));
@@ -68,7 +80,8 @@ public class TransferirUseCase {
                 saldoAnteriorOrigen,
                 saldoPosteriorOrigen,
                 LocalDateTime.now(),
-                cuentaDestino.getNumeroCuenta()
+                cuentaDestino.getNumeroCuenta(),
+                gmf
         );
 
         Transaccion transaccionDestino = new Transaccion(

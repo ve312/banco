@@ -3,6 +3,8 @@ package com.trinity.banco.transaccion.infrastructure.outbound.persistence.mapper
 import com.trinity.banco.transaccion.domain.model.Transaccion;
 import com.trinity.banco.transaccion.infrastructure.outbound.persistence.entity.TransaccionEntity;
 
+import java.math.BigDecimal;
+
 public class TransaccionMapper {
     public static TransaccionEntity toEntity(Transaccion transaccion) {
         TransaccionEntity entity = new TransaccionEntity();
@@ -14,6 +16,7 @@ public class TransaccionMapper {
         entity.setSaldoPosterior(transaccion.getSaldoPosterior());
         entity.setFecha(transaccion.getFecha());
         entity.setNumeroCuentaRelacionada(transaccion.getNumeroCuentaRelacionada());
+        entity.setImpuesto(transaccion.getImpuesto());
 
         return entity;
     }
@@ -27,7 +30,8 @@ public class TransaccionMapper {
                 entity.getSaldoAnterior(),
                 entity.getSaldoPosterior(),
                 entity.getFecha(),
-                entity.getNumeroCuentaRelacionada()
+                entity.getNumeroCuentaRelacionada(),
+                entity.getImpuesto() != null ? entity.getImpuesto() : BigDecimal.ZERO
         );
     }
 }

@@ -30,9 +30,17 @@ public class CrearCuentaUseCase {
                            boolean exentaGMF,
                            Long clienteId) {
 
-
         if (!clienteRepository.existePorId(clienteId)) {
             throw new RuntimeException("El cliente no existe");
+        }
+
+        if (exentaGMF) {
+            boolean tieneCuentaExenta = cuentaRepository.listarPorClienteId(clienteId)
+                    .stream()
+                    .anyMatch(Cuenta::isExentaGMF);
+            if (tieneCuentaExenta) {
+                throw new RuntimeException("El cliente ya tiene una cuenta exenta de GMF");
+            }
         }
 
         CuentaValidator.validarTipoCuenta(tipoCuenta);

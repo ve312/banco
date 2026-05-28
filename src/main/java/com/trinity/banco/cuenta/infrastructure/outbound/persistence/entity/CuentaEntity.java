@@ -38,6 +38,10 @@ public class CuentaEntity {
 
     private Long clienteId;
 
+    private BigDecimal gmfAcumuladoMensual;
+
+    private Integer mesAcumuladoGMF;
+
     public CuentaEntity() {}
 
     public CuentaEntity(Long id,
@@ -49,6 +53,22 @@ public class CuentaEntity {
                         LocalDateTime fechaCreacion,
                         LocalDateTime fechaModificacion,
                         Long clienteId) {
+        this(id, tipoCuenta, numeroCuenta, estado, saldo, exentaGMF,
+                fechaCreacion, fechaModificacion, clienteId,
+                BigDecimal.ZERO, 0);
+    }
+
+    public CuentaEntity(Long id,
+                        TipoCuenta tipoCuenta,
+                        String numeroCuenta,
+                        EstadoCuenta estado,
+                        BigDecimal saldo,
+                        boolean exentaGMF,
+                        LocalDateTime fechaCreacion,
+                        LocalDateTime fechaModificacion,
+                        Long clienteId,
+                        BigDecimal gmfAcumuladoMensual,
+                        Integer mesAcumuladoGMF) {
         this.id = id;
         this.tipoCuenta = tipoCuenta;
         this.numeroCuenta = numeroCuenta;
@@ -58,5 +78,7 @@ public class CuentaEntity {
         this.fechaCreacion = fechaCreacion;
         this.fechaModificacion = fechaModificacion;
         this.clienteId = clienteId;
+        this.gmfAcumuladoMensual = gmfAcumuladoMensual;
+        this.mesAcumuladoGMF = mesAcumuladoGMF;
     }
 }

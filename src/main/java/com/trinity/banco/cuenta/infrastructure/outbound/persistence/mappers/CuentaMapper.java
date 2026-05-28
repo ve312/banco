@@ -3,6 +3,8 @@ package com.trinity.banco.cuenta.infrastructure.outbound.persistence.mappers;
 import com.trinity.banco.cuenta.domain.model.Cuenta;
 import com.trinity.banco.cuenta.infrastructure.outbound.persistence.entity.CuentaEntity;
 
+import java.math.BigDecimal;
+
 public class CuentaMapper {
     private CuentaMapper() {}
 
@@ -18,7 +20,9 @@ public class CuentaMapper {
                 entity.isExentaGMF(),
                 entity.getFechaCreacion(),
                 entity.getFechaModificacion(),
-                entity.getClienteId()
+                entity.getClienteId(),
+                entity.getGmfAcumuladoMensual() != null ? entity.getGmfAcumuladoMensual() : BigDecimal.ZERO,
+                entity.getMesAcumuladoGMF() != null ? entity.getMesAcumuladoGMF() : 0
         );
     }
 
@@ -34,7 +38,9 @@ public class CuentaMapper {
                 domain.isExentaGMF(),
                 domain.getFechaCreacion(),
                 domain.getFechaModificacion(),
-                domain.getClienteId()
+                domain.getClienteId(),
+                domain.getGmfAcumuladoMensual(),
+                domain.getMesAcumuladoGMF()
         );
     }
 }
