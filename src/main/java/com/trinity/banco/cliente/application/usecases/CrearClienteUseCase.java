@@ -4,7 +4,6 @@ import com.trinity.banco.cliente.application.validators.ClienteValidator;
 import com.trinity.banco.cliente.domain.model.Cliente;
 import com.trinity.banco.cliente.domain.model.enums.TipoIdentificacion;
 import com.trinity.banco.cliente.domain.ports.ClienteRepository;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,7 +24,11 @@ public class CrearClienteUseCase {
                             LocalDate fechaNacimiento) {
 
         if (clienteRepository.existePorNumeroIdentificacion(numeroIdentificacion)) {
-            throw new RuntimeException("El cliente ya existe");
+            throw new RuntimeException("Un cliente con este número de identificación ya existe");
+        }
+
+        if (clienteRepository.existePorEmail(email)) {
+            throw new RuntimeException("Un cliente con este email ya existe");
         }
 
         if (!fechaNacimiento.isBefore(LocalDate.now().minusYears(18))) {

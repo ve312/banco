@@ -17,4 +17,6 @@ public interface ClienteRepository {
     boolean existePorNumeroIdentificacion(String numeroIdentificacion);
 
     boolean existePorId(Long id);
+
+    boolean existePorEmail(String email);
 }

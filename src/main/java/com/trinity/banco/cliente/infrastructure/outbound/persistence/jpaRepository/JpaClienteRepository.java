@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface JpaClienteRepository extends JpaRepository<ClienteEntity, Long> {
     boolean existsByNumeroIdentificacion(String numeroIdentificacion);
+    boolean existsByEmail(String email);
 }

@@ -54,4 +54,10 @@ public class ClienteRepositoryAdapter implements ClienteRepository {
     public boolean existePorId(Long id) {
         return jpaRepository.existsById(id);
     }
+
+    @Override
+    public boolean existePorEmail(String email) {
+        return jpaRepository.existsByEmail(email);
+    }
+
 }

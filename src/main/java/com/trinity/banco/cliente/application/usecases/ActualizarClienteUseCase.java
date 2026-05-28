@@ -18,6 +18,10 @@ public class ActualizarClienteUseCase {
         Cliente cliente = clienteRepository.buscarPorId(id)
                 .orElseThrow(() -> new RecursoNoEncontradoException("Cliente no encontrado"));
 
+        if (clienteRepository.existePorEmail(email) && !cliente.getEmail().equals(email)) {
+            throw new RuntimeException("Un cliente con este email ya existe");
+        }
+
         ClienteValidator.validarEmail(email);
         ClienteValidator.validarNombre(nombres, apellidos);
 
