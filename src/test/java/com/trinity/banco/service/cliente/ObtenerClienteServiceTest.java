@@ -1,6 +1,6 @@
 package com.trinity.banco.service.cliente;
 
-import com.trinity.banco.cliente.application.usecases.ObtenerClienteService;
+import com.trinity.banco.cliente.application.usecases.ObtenerClienteUseCase;
 import com.trinity.banco.cliente.domain.model.Cliente;
 import com.trinity.banco.cliente.domain.ports.ClienteRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +19,7 @@ public class ObtenerClienteServiceTest {
     private ClienteRepository clienteRepository;
 
     @InjectMocks
-    private ObtenerClienteService obtenerClienteService;
+    private ObtenerClienteUseCase obtenerClienteService;
 
     @BeforeEach
     void setUp() {

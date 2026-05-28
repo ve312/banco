@@ -1,6 +1,6 @@
 package com.trinity.banco.service.cliente;
 
-import com.trinity.banco.cliente.application.usecases.ActualizarClienteService;
+import com.trinity.banco.cliente.application.usecases.ActualizarClienteUseCase;
 import com.trinity.banco.cliente.domain.model.Cliente;
 import com.trinity.banco.cliente.domain.ports.ClienteRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +19,7 @@ public class ActualizarClienteServiceTest {
     private ClienteRepository clienteRepository;
 
     @InjectMocks
-    private ActualizarClienteService actualizarClienteService;
+    private ActualizarClienteUseCase actualizarClienteService;
 
     private Cliente clienteMock;
 

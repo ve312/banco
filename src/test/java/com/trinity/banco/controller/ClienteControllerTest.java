@@ -26,19 +26,19 @@ public class ClienteControllerTest {
     private MockMvc mockMvc;
 
     @MockitoBean
-    private CrearClienteService crearClienteService;
+    private CrearClienteUseCase crearClienteService;
 
     @MockitoBean
-    private ActualizarClienteService actualizarClienteService;
+    private ActualizarClienteUseCase actualizarClienteService;
 
     @MockitoBean
-    private EliminarClienteService eliminarClienteService;
+    private EliminarClienteUseCase eliminarClienteService;
 
     @MockitoBean
-    private ObtenerClienteService obtenerClienteService;
+    private ObtenerClienteUseCase obtenerClienteService;
 
     @MockitoBean
-    private ListarClientesService listarClientesService;
+    private ListarClientesUseCase listarClientesService;
 
     private Cliente mockCliente() {
         Cliente cliente = mock(Cliente.class);

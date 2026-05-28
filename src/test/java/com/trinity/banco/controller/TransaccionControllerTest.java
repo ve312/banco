@@ -1,9 +1,9 @@
 package com.trinity.banco.controller;
 
-import com.trinity.banco.transaccion.application.usecases.ConsignarService;
-import com.trinity.banco.transaccion.application.usecases.ListarTransaccionesPorCuentaService;
-import com.trinity.banco.transaccion.application.usecases.RetirarService;
-import com.trinity.banco.transaccion.application.usecases.TransferirService;
+import com.trinity.banco.transaccion.application.usecases.ConsignarUseCase;
+import com.trinity.banco.transaccion.application.usecases.ListarTransaccionesPorCuentaUseCase;
+import com.trinity.banco.transaccion.application.usecases.RetirarUseCase;
+import com.trinity.banco.transaccion.application.usecases.TransferirUseCase;
 import com.trinity.banco.transaccion.domain.model.Transaccion;
 import com.trinity.banco.transaccion.domain.model.enums.TipoTransaccion;
 import com.trinity.banco.transaccion.infrastructure.inbound.TransaccionController;
@@ -29,16 +29,16 @@ public class TransaccionControllerTest {
     private MockMvc mockMvc;
 
     @MockitoBean
-    private ConsignarService consignarService;
+    private ConsignarUseCase consignarService;
 
     @MockitoBean
-    private RetirarService retirarService;
+    private RetirarUseCase retirarService;
 
     @MockitoBean
-    private TransferirService transferirService;
+    private TransferirUseCase transferirService;
 
     @MockitoBean
-    private ListarTransaccionesPorCuentaService listarService;
+    private ListarTransaccionesPorCuentaUseCase listarService;
 
     private Transaccion mockTransaccion(String numeroCuenta, BigDecimal monto,TipoTransaccion tipoTransaccion) {
         Transaccion transaccion = mock(Transaccion.class);

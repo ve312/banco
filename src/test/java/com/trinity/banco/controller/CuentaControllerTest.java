@@ -27,17 +27,17 @@ public class CuentaControllerTest {
     private MockMvc mockMvc;
 
     @MockitoBean
-    private CrearCuentaService crearCuentaService;
+    private CrearCuentaUseCase crearCuentaService;
     @MockitoBean
-    private CancelarCuentaService cancelarCuentaService;
+    private CancelarCuentaUseCase cancelarCuentaService;
     @MockitoBean
-    private ActivarCuentaService activarCuentaService;
+    private ActivarCuentaUseCase activarCuentaService;
     @MockitoBean
-    private InactivarCuentaService inactivarCuentaService;
+    private InactivarCuentaUseCase inactivarCuentaService;
     @MockitoBean
-    private ObtenerCuentaService obtenerCuentaService;
+    private ObtenerCuentaUseCase obtenerCuentaService;
     @MockitoBean
-    private ListarCuentasPorClienteService listarPorClienteService;
+    private ListarCuentasPorClienteUseCase listarPorClienteService;
 
     private Cuenta mockCuenta(String numeroCuenta) {
         Cuenta cuenta = mock(Cuenta.class);

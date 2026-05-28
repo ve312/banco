@@ -1,6 +1,6 @@
 package com.trinity.banco.service.cuenta;
 
-import com.trinity.banco.cuenta.application.usecases.InactivarCuentaService;
+import com.trinity.banco.cuenta.application.usecases.InactivarCuentaUseCase;
 import com.trinity.banco.cuenta.domain.model.Cuenta;
 import com.trinity.banco.cuenta.domain.model.enums.EstadoCuenta;
 import com.trinity.banco.cuenta.domain.model.enums.TipoCuenta;
@@ -24,7 +24,7 @@ public class InactivarCuentaServiceTest {
     private CuentaRepository cuentaRepository;
 
     @InjectMocks
-    private InactivarCuentaService inactivarCuentaService;
+    private InactivarCuentaUseCase inactivarCuentaService;
 
     @BeforeEach
     void setUp() {

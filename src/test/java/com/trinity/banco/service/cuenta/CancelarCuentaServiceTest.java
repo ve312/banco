@@ -1,6 +1,6 @@
 package com.trinity.banco.service.cuenta;
 
-import com.trinity.banco.cuenta.application.usecases.CancelarCuentaService;
+import com.trinity.banco.cuenta.application.usecases.CancelarCuentaUseCase;
 import com.trinity.banco.cuenta.domain.model.Cuenta;
 import com.trinity.banco.cuenta.domain.model.enums.EstadoCuenta;
 import com.trinity.banco.cuenta.domain.model.enums.TipoCuenta;
@@ -24,7 +24,7 @@ public class CancelarCuentaServiceTest {
     private CuentaRepository cuentaRepository;
 
     @InjectMocks
-    private CancelarCuentaService cancelarCuentaService;
+    private CancelarCuentaUseCase cancelarCuentaService;
 
     @BeforeEach
     void setUp() {

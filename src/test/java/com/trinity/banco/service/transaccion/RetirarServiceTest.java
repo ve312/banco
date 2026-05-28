@@ -1,6 +1,6 @@
 package com.trinity.banco.service.transaccion;
 
-import com.trinity.banco.transaccion.application.usecases.RetirarService;
+import com.trinity.banco.transaccion.application.usecases.RetirarUseCase;
 import com.trinity.banco.cuenta.domain.model.Cuenta;
 import com.trinity.banco.transaccion.domain.model.Transaccion;
 import com.trinity.banco.cuenta.domain.model.enums.EstadoCuenta;
@@ -32,7 +32,7 @@ public class RetirarServiceTest {
     private TransaccionRepository transaccionRepository;
 
     @InjectMocks
-    private RetirarService retirarService;
+    private RetirarUseCase retirarService;
 
     private Cuenta cuenta;
 

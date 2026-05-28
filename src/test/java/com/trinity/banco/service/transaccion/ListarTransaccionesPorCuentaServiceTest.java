@@ -1,6 +1,6 @@
 package com.trinity.banco.service.transaccion;
 
-import com.trinity.banco.transaccion.application.usecases.ListarTransaccionesPorCuentaService;
+import com.trinity.banco.transaccion.application.usecases.ListarTransaccionesPorCuentaUseCase;
 import com.trinity.banco.cuenta.domain.model.Cuenta;
 import com.trinity.banco.transaccion.domain.model.Transaccion;
 import com.trinity.banco.cuenta.domain.ports.CuentaRepository;
@@ -28,7 +28,7 @@ public class ListarTransaccionesPorCuentaServiceTest {
     private CuentaRepository cuentaRepository;
 
     @InjectMocks
-    private ListarTransaccionesPorCuentaService listarTransaccionesPorCuentaService;
+    private ListarTransaccionesPorCuentaUseCase listarTransaccionesPorCuentaService;
 
     @BeforeEach
     void setUp() {

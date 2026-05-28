@@ -1,6 +1,6 @@
 package com.trinity.banco.service.cliente;
 
-import com.trinity.banco.cliente.application.usecases.EliminarClienteService;
+import com.trinity.banco.cliente.application.usecases.EliminarClienteUseCase;
 import com.trinity.banco.cliente.domain.ports.ClienteRepository;
 import com.trinity.banco.cuenta.domain.ports.CuentaRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +21,7 @@ public class EliminarClienteServiceTest {
     private CuentaRepository cuentaRepository;
 
     @InjectMocks
-    private EliminarClienteService eliminarClienteService;
+    private EliminarClienteUseCase eliminarClienteService;
 
     @BeforeEach
     void setUp() {

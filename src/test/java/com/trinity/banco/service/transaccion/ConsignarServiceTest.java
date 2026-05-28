@@ -1,6 +1,6 @@
 package com.trinity.banco.service.transaccion;
 
-import com.trinity.banco.transaccion.application.usecases.ConsignarService;
+import com.trinity.banco.transaccion.application.usecases.ConsignarUseCase;
 import com.trinity.banco.cuenta.domain.model.Cuenta;
 import com.trinity.banco.transaccion.domain.model.Transaccion;
 import com.trinity.banco.cuenta.domain.model.enums.EstadoCuenta;
@@ -32,7 +32,7 @@ public class ConsignarServiceTest {
     private TransaccionRepository transaccionRepository;
 
     @InjectMocks
-    private ConsignarService consignarService;
+    private ConsignarUseCase consignarService;
 
     private Cuenta cuenta;
 

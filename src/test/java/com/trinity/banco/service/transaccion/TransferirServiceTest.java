@@ -1,6 +1,6 @@
 package com.trinity.banco.service.transaccion;
 
-import com.trinity.banco.transaccion.application.usecases.TransferirService;
+import com.trinity.banco.transaccion.application.usecases.TransferirUseCase;
 import com.trinity.banco.cuenta.domain.model.Cuenta;
 import com.trinity.banco.transaccion.domain.model.Transaccion;
 import com.trinity.banco.cuenta.domain.model.enums.EstadoCuenta;
@@ -31,7 +31,7 @@ public class TransferirServiceTest {
     private TransaccionRepository transaccionRepository;
 
     @InjectMocks
-    private TransferirService transferirService;
+    private TransferirUseCase transferirService;
 
     private Cuenta cuentaOrigen;
     private Cuenta cuentaDestino;

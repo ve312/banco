@@ -1,7 +1,7 @@
 package com.trinity.banco.service.cuenta;
 
-import com.trinity.banco.cuenta.application.usecases.CrearCuentaService;
-import com.trinity.banco.cuenta.application.NumeroCuentaGenerator;
+import com.trinity.banco.cuenta.application.usecases.CrearCuentaUseCase;
+import com.trinity.banco.cuenta.application.util.NumeroCuentaGenerator;
 import com.trinity.banco.cuenta.domain.model.Cuenta;
 import com.trinity.banco.cuenta.domain.model.enums.TipoCuenta;
 import com.trinity.banco.cliente.domain.ports.ClienteRepository;
@@ -31,7 +31,7 @@ public class CrearCuentaServiceTest {
     private NumeroCuentaGenerator numeroCuentaGenerator;
 
     @InjectMocks
-    private CrearCuentaService crearCuentaService;
+    private CrearCuentaUseCase crearCuentaService;
 
     @BeforeEach
     void setUp() {
