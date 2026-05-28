@@ -1,4 +1,4 @@
-package com.trinity.banco.service.transaccion;
+package com.trinity.banco.Usecase.transaccion;
 
 import com.trinity.banco.transaccion.application.usecases.TransferirUseCase;
 import com.trinity.banco.cuenta.domain.model.Cuenta;
@@ -67,7 +67,7 @@ public class TransferirServiceTest {
 
 
     @Test
-    void deberia_transferir_exitosamente() {
+    void deberia_transferir_con_gmf_entre_distintos_clientes() {
 
         when(cuentaRepository.buscarPorNumeroCuenta("5300000001"))
                 .thenReturn(Optional.of(cuentaOrigen));
@@ -83,6 +83,60 @@ public class TransferirServiceTest {
 
         assertNotNull(resultado);
         assertEquals(2, resultado.size());
+
+        Transaccion origenTx = resultado.get(0);
+        assertEquals(new BigDecimal("200"), origenTx.getMonto());
+        assertEquals(new BigDecimal("0.80"), origenTx.getImpuesto());
+
+        Transaccion destTx = resultado.get(1);
+        assertEquals(BigDecimal.ZERO, destTx.getImpuesto());
+
+        verify(cuentaRepository, times(2)).guardar(any());
+        verify(transaccionRepository, times(2)).guardar(any());
+    }
+
+
+    @Test
+    void deberia_transferir_sin_gmf_entre_cuentas_del_mismo_cliente() {
+        Cuenta cuentaOrigenMismoCliente = new Cuenta(
+                1L,
+                TipoCuenta.AHORROS,
+                "5300000001",
+                EstadoCuenta.ACTIVA,
+                new BigDecimal("1000"),
+                false,
+                LocalDateTime.now(),
+                LocalDateTime.now(),
+                1L
+        );
+
+        Cuenta cuentaDestinoMismoCliente = new Cuenta(
+                2L,
+                TipoCuenta.CORRIENTE,
+                "5300000002",
+                EstadoCuenta.ACTIVA,
+                new BigDecimal("500"),
+                false,
+                LocalDateTime.now(),
+                LocalDateTime.now(),
+                1L
+        );
+
+        when(cuentaRepository.buscarPorNumeroCuenta("5300000001"))
+                .thenReturn(Optional.of(cuentaOrigenMismoCliente));
+
+        when(cuentaRepository.buscarPorNumeroCuenta("5300000002"))
+                .thenReturn(Optional.of(cuentaDestinoMismoCliente));
+
+        List<Transaccion> resultado = transferirService.ejecutar(
+                "5300000001",
+                "5300000002",
+                new BigDecimal("200")
+        );
+
+        assertNotNull(resultado);
+        assertEquals(2, resultado.size());
+        assertEquals(BigDecimal.ZERO, resultado.get(0).getImpuesto());
 
         verify(cuentaRepository, times(2)).guardar(any());
         verify(transaccionRepository, times(2)).guardar(any());
@@ -111,4 +165,33 @@ public class TransferirServiceTest {
         );
 
         assertEquals("No se puede transferir a la misma cuenta", ex.getMessage());
-    }}
+    }
+
+    @Test
+    void deberia_lanzar_error_si_saldo_insuficiente_con_gmf() {
+        Cuenta cuentaOrigenPobre = new Cuenta(
+                1L,
+                TipoCuenta.AHORROS,
+                "5300000001",
+                EstadoCuenta.ACTIVA,
+                new BigDecimal("100"),
+                false,
+                LocalDateTime.now(),
+                LocalDateTime.now(),
+                1L
+        );
+
+        when(cuentaRepository.buscarPorNumeroCuenta("5300000001"))
+                .thenReturn(Optional.of(cuentaOrigenPobre));
+
+        when(cuentaRepository.buscarPorNumeroCuenta("5300000002"))
+                .thenReturn(Optional.of(cuentaDestino));
+
+        RuntimeException ex = assertThrows(RuntimeException.class, () ->
+                transferirService.ejecutar("5300000001", "5300000002", new BigDecimal("100"))
+        );
+
+        assertEquals("Cuenta de ahorros no puede quedar en saldo negativo", ex.getMessage());
+        verify(transaccionRepository, never()).guardar(any());
+    }
+}

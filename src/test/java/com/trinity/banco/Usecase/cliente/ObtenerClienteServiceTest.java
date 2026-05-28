@@ -1,4 +1,4 @@
-package com.trinity.banco.service.cliente;
+package com.trinity.banco.Usecase.cliente;
 
 import com.trinity.banco.cliente.application.usecases.ObtenerClienteUseCase;
 import com.trinity.banco.cliente.domain.model.Cliente;

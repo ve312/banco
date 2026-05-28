@@ -1,4 +1,4 @@
-package com.trinity.banco.service.cuenta;
+package com.trinity.banco.Usecase.cuenta;
 
 import com.trinity.banco.cuenta.application.usecases.ActivarCuentaUseCase;
 import com.trinity.banco.cuenta.domain.model.Cuenta;

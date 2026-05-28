@@ -1,4 +1,4 @@
-package com.trinity.banco.service.cliente;
+package com.trinity.banco.Usecase.cliente;
 
 import com.trinity.banco.cliente.application.usecases.CrearClienteUseCase;
 import com.trinity.banco.cliente.domain.model.Cliente;
@@ -31,6 +31,7 @@ public class CrearClienteServiceTest {
     @Test
     void deberia_crear_cliente_exitosamente() {
         when(clienteRepository.existePorNumeroIdentificacion("123456789")).thenReturn(false);
+        when(clienteRepository.existePorEmail("maria@test.com")).thenReturn(false);
         when(clienteRepository.guardar(any(Cliente.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
         LocalDate fechaNacimientoValida = LocalDate.now().minusYears(20);
@@ -50,7 +51,7 @@ public class CrearClienteServiceTest {
     }
 
     @Test
-    void deberia_lanzar_error_si_cliente_ya_existe() {
+    void deberia_lanzar_error_si_identificacion_ya_existe() {
         when(clienteRepository.existePorNumeroIdentificacion("123456789")).thenReturn(true);
 
         LocalDate fechaNacimientoValida = LocalDate.now().minusYears(20);
@@ -66,13 +67,36 @@ public class CrearClienteServiceTest {
                 )
         );
 
-        assertEquals("El cliente ya existe", ex.getMessage());
+        assertEquals("Un cliente con este número de identificación ya existe", ex.getMessage());
+        verify(clienteRepository, never()).guardar(any());
+    }
+
+    @Test
+    void deberia_lanzar_error_si_email_ya_existe() {
+        when(clienteRepository.existePorNumeroIdentificacion("123456789")).thenReturn(false);
+        when(clienteRepository.existePorEmail("maria@test.com")).thenReturn(true);
+
+        LocalDate fechaNacimientoValida = LocalDate.now().minusYears(20);
+
+        RuntimeException ex = assertThrows(RuntimeException.class, () ->
+                crearClienteService.ejecutar(
+                        TipoIdentificacion.CC,
+                        "123456789",
+                        "Maria",
+                        "Gomez",
+                        "maria@test.com",
+                        fechaNacimientoValida
+                )
+        );
+
+        assertEquals("Un cliente con este email ya existe", ex.getMessage());
         verify(clienteRepository, never()).guardar(any());
     }
 
     @Test
     void deberia_lanzar_error_si_es_menor_de_edad() {
         when(clienteRepository.existePorNumeroIdentificacion("123456789")).thenReturn(false);
+        when(clienteRepository.existePorEmail("maria@test.com")).thenReturn(false);
 
         LocalDate fechaNacimientoInvalida = LocalDate.now().minusYears(15);
         RuntimeException ex = assertThrows(RuntimeException.class, () ->
