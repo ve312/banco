@@ -1,12 +1,14 @@
 package com.trinity.banco.cliente.domain.model;
 
 import com.trinity.banco.cliente.domain.model.enums.TipoIdentificacion;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
+@Builder
 public class Cliente {
     private Long id;
     private TipoIdentificacion tipoIdentificacion;

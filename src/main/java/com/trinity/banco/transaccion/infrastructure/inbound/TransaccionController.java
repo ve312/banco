@@ -1,9 +1,9 @@
 package com.trinity.banco.transaccion.infrastructure.inbound;
 
-import com.trinity.banco.transaccion.application.usecases.ConsignarService;
-import com.trinity.banco.transaccion.application.usecases.ListarTransaccionesPorCuentaService;
-import com.trinity.banco.transaccion.application.usecases.RetirarService;
-import com.trinity.banco.transaccion.application.usecases.TransferirService;
+import com.trinity.banco.transaccion.application.usecases.ConsignarUseCase;
+import com.trinity.banco.transaccion.application.usecases.ListarTransaccionesPorCuentaUseCase;
+import com.trinity.banco.transaccion.application.usecases.RetirarUseCase;
+import com.trinity.banco.transaccion.application.usecases.TransferirUseCase;
 import com.trinity.banco.transaccion.domain.model.Transaccion;
 import com.trinity.banco.transaccion.infrastructure.inbound.dto.request.MovimientoRequest;
 import com.trinity.banco.transaccion.infrastructure.inbound.dto.request.TransferenciaRequest;
@@ -20,16 +20,16 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/transacciones")
 public class TransaccionController {
-    private final ConsignarService consignarService;
-    private final RetirarService retirarService;
-    private final TransferirService transferirService;
-    private final ListarTransaccionesPorCuentaService listarService;
+    private final ConsignarUseCase consignarService;
+    private final RetirarUseCase retirarService;
+    private final TransferirUseCase transferirService;
+    private final ListarTransaccionesPorCuentaUseCase listarService;
 
     public TransaccionController(
-            ConsignarService consignarService,
-            RetirarService retirarService,
-            TransferirService transferirService,
-            ListarTransaccionesPorCuentaService listarService
+            ConsignarUseCase consignarService,
+            RetirarUseCase retirarService,
+            TransferirUseCase transferirService,
+            ListarTransaccionesPorCuentaUseCase listarService
     ) {
         this.consignarService = consignarService;
         this.retirarService = retirarService;

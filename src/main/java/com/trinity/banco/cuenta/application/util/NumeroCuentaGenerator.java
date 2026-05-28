@@ -1,4 +1,4 @@
-package com.trinity.banco.cuenta.application;
+package com.trinity.banco.cuenta.application.util;
 
 import com.trinity.banco.cuenta.domain.model.enums.TipoCuenta;
 import com.trinity.banco.cuenta.domain.ports.CuentaRepository;

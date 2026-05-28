@@ -15,20 +15,20 @@ import java.util.List;
 @RestController
 @RequestMapping("/cuentas")
 public class CuentaController {
-    private final CrearCuentaService crearCuentaService;
-    private final CancelarCuentaService cancelarCuentaService;
-    private final ActivarCuentaService activarCuentaService;
-    private final InactivarCuentaService inactivarCuentaService;
-    private final ObtenerCuentaService obtenerCuentaService;
-    private final ListarCuentasPorClienteService listarPorClienteService;
+    private final CrearCuentaUseCase crearCuentaService;
+    private final CancelarCuentaUseCase cancelarCuentaService;
+    private final ActivarCuentaUseCase activarCuentaService;
+    private final InactivarCuentaUseCase inactivarCuentaService;
+    private final ObtenerCuentaUseCase obtenerCuentaService;
+    private final ListarCuentasPorClienteUseCase listarPorClienteService;
 
     public CuentaController(
-            CrearCuentaService crearCuentaService,
-            CancelarCuentaService cancelarCuentaService,
-            ActivarCuentaService activarCuentaService,
-            InactivarCuentaService inactivarCuentaService,
-            ObtenerCuentaService obtenerCuentaService,
-            ListarCuentasPorClienteService listarPorClienteService
+            CrearCuentaUseCase crearCuentaService,
+            CancelarCuentaUseCase cancelarCuentaService,
+            ActivarCuentaUseCase activarCuentaService,
+            InactivarCuentaUseCase inactivarCuentaService,
+            ObtenerCuentaUseCase obtenerCuentaService,
+            ListarCuentasPorClienteUseCase listarPorClienteService
     ) {
         this.crearCuentaService = crearCuentaService;
         this.cancelarCuentaService = cancelarCuentaService;

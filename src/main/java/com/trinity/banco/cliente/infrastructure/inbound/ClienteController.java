@@ -17,18 +17,18 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
-    private final CrearClienteService crearClienteService;
-    private final ActualizarClienteService actualizarClienteService;
-    private final EliminarClienteService eliminarClienteService;
-    private final ObtenerClienteService obtenerClienteService;
-    private final ListarClientesService listarClientesService;
+    private final CrearClienteUseCase crearClienteService;
+    private final ActualizarClienteUseCase actualizarClienteService;
+    private final EliminarClienteUseCase eliminarClienteService;
+    private final ObtenerClienteUseCase obtenerClienteService;
+    private final ListarClientesUseCase listarClientesService;
 
     public ClienteController(
-            CrearClienteService crearClienteService,
-            ActualizarClienteService actualizarClienteService,
-            EliminarClienteService eliminarClienteService,
-            ObtenerClienteService obtenerClienteService,
-            ListarClientesService listarClientesService
+            CrearClienteUseCase crearClienteService,
+            ActualizarClienteUseCase actualizarClienteService,
+            EliminarClienteUseCase eliminarClienteService,
+            ObtenerClienteUseCase obtenerClienteService,
+            ListarClientesUseCase listarClientesService
     ) {
         this.crearClienteService = crearClienteService;
         this.actualizarClienteService = actualizarClienteService;
