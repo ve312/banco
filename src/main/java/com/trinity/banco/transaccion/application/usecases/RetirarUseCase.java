@@ -6,22 +6,19 @@ import com.trinity.banco.transaccion.domain.model.Transaccion;
 import com.trinity.banco.transaccion.domain.model.enums.TipoTransaccion;
 import com.trinity.banco.cuenta.domain.ports.CuentaRepository;
 import com.trinity.banco.transaccion.domain.ports.TransaccionRepository;
-import com.trinity.banco.shared.errors.RecursoNoEncontradoException;
+import com.trinity.banco.shared.domain.errors.RecursoNoEncontradoException;
 import jakarta.transaction.Transactional;
-import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Service
 @Transactional
-public class ConsignarService {
-
+public class RetirarUseCase {
     private final CuentaRepository cuentaRepository;
     private final TransaccionRepository transaccionRepository;
 
-    public ConsignarService(CuentaRepository cuentaRepository,
-                            TransaccionRepository transaccionRepository) {
+    public RetirarUseCase(CuentaRepository cuentaRepository,
+                          TransaccionRepository transaccionRepository) {
         this.cuentaRepository = cuentaRepository;
         this.transaccionRepository = transaccionRepository;
     }
@@ -34,10 +31,11 @@ public class ConsignarService {
                 .orElseThrow(() -> new RecursoNoEncontradoException("Cuenta no encontrada"));
 
         CuentaValidator.validarCuentaActiva(cuenta);
+        CuentaValidator.validarSaldoDisponible(cuenta, monto);
 
         BigDecimal saldoAnterior = cuenta.getSaldo();
 
-        cuenta.setSaldo(saldoAnterior.add(monto));
+        cuenta.setSaldo(saldoAnterior.subtract(monto));
         cuenta.setFechaModificacion(LocalDateTime.now());
 
         BigDecimal saldoPosterior = cuenta.getSaldo();
@@ -47,7 +45,7 @@ public class ConsignarService {
         Transaccion transaccion = new Transaccion(
                 null,
                 cuenta.getNumeroCuenta(),
-                TipoTransaccion.CONSIGNACION,
+                TipoTransaccion.RETIRO,
                 monto,
                 saldoAnterior,
                 saldoPosterior,
@@ -56,6 +54,6 @@ public class ConsignarService {
         );
 
         transaccionRepository.guardar(transaccion);
-        return  transaccion;
+        return transaccion;
     }
 }

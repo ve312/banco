@@ -1,7 +1,7 @@
 package com.trinity.banco.cuenta.application.usecases;
 
 import com.trinity.banco.cuenta.application.validators.CuentaValidator;
-import com.trinity.banco.cuenta.application.NumeroCuentaGenerator;
+import com.trinity.banco.cuenta.application.util.NumeroCuentaGenerator;
 import com.trinity.banco.cuenta.domain.model.Cuenta;
 import com.trinity.banco.cuenta.domain.model.enums.EstadoCuenta;
 import com.trinity.banco.cuenta.domain.model.enums.TipoCuenta;
@@ -12,15 +12,14 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Service
-public class CrearCuentaService {
+public class CrearCuentaUseCase {
     private final CuentaRepository cuentaRepository;
     private final ClienteRepository clienteRepository;
     private final NumeroCuentaGenerator numeroCuentaGenerator;
 
-    public CrearCuentaService(CuentaRepository cuentaRepository,
+    public CrearCuentaUseCase(CuentaRepository cuentaRepository,
                               ClienteRepository clienteRepository,
-                                  NumeroCuentaGenerator numeroCuentaGenerator) {
+                              NumeroCuentaGenerator numeroCuentaGenerator) {
         this.cuentaRepository = cuentaRepository;
         this.clienteRepository = clienteRepository;
         this.numeroCuentaGenerator = numeroCuentaGenerator;

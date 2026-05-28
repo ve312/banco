@@ -9,12 +9,11 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Service
-public class CrearClienteService {
+public class CrearClienteUseCase {
 
     private final ClienteRepository clienteRepository;
 
-    public CrearClienteService(ClienteRepository clienteRepository) {
+    public CrearClienteUseCase(ClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
 

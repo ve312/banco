@@ -2,14 +2,12 @@ package com.trinity.banco.cuenta.application.usecases;
 
 import com.trinity.banco.cuenta.domain.model.Cuenta;
 import com.trinity.banco.cuenta.domain.ports.CuentaRepository;
-import com.trinity.banco.shared.errors.RecursoNoEncontradoException;
-import org.springframework.stereotype.Service;
+import com.trinity.banco.shared.domain.errors.RecursoNoEncontradoException;
 
-@Service
-public class ObtenerCuentaService {
+public class ObtenerCuentaUseCase {
     private final CuentaRepository cuentaRepository;
 
-    public ObtenerCuentaService(CuentaRepository cuentaRepository) {
+    public ObtenerCuentaUseCase(CuentaRepository cuentaRepository) {
         this.cuentaRepository = cuentaRepository;
     }
 

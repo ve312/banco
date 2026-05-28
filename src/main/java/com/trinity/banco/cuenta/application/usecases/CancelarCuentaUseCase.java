@@ -3,17 +3,15 @@ package com.trinity.banco.cuenta.application.usecases;
 import com.trinity.banco.cuenta.domain.model.Cuenta;
 import com.trinity.banco.cuenta.domain.model.enums.EstadoCuenta;
 import com.trinity.banco.cuenta.domain.ports.CuentaRepository;
-import com.trinity.banco.shared.errors.RecursoNoEncontradoException;
-import org.springframework.stereotype.Service;
+import com.trinity.banco.shared.domain.errors.RecursoNoEncontradoException;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Service
-public class CancelarCuentaService {
+public class CancelarCuentaUseCase {
     private final CuentaRepository cuentaRepository;
 
-    public CancelarCuentaService(CuentaRepository cuentaRepository) {
+    public CancelarCuentaUseCase(CuentaRepository cuentaRepository) {
         this.cuentaRepository = cuentaRepository;
     }
 

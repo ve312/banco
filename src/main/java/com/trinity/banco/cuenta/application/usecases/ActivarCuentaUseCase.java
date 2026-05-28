@@ -3,16 +3,14 @@ package com.trinity.banco.cuenta.application.usecases;
 import com.trinity.banco.cuenta.domain.model.Cuenta;
 import com.trinity.banco.cuenta.domain.model.enums.EstadoCuenta;
 import com.trinity.banco.cuenta.domain.ports.CuentaRepository;
-import com.trinity.banco.shared.errors.RecursoNoEncontradoException;
-import org.springframework.stereotype.Service;
+import com.trinity.banco.shared.domain.errors.RecursoNoEncontradoException;
 
 import java.time.LocalDateTime;
 
-@Service
-public class InactivarCuentaService {
+public class ActivarCuentaUseCase {
     private final CuentaRepository cuentaRepository;
 
-    public InactivarCuentaService(CuentaRepository cuentaRepository) {
+    public ActivarCuentaUseCase(CuentaRepository cuentaRepository) {
         this.cuentaRepository = cuentaRepository;
     }
 
@@ -21,11 +19,11 @@ public class InactivarCuentaService {
         Cuenta cuenta = cuentaRepository.buscarPorNumeroCuenta(numeroCuenta)
                 .orElseThrow(() -> new RecursoNoEncontradoException("Cuenta no encontrada"));
 
-        if (cuenta.getEstado() == EstadoCuenta.INACTIVA) {
-            throw new RuntimeException("La cuenta ya está inactiva");
+        if (cuenta.getEstado() == EstadoCuenta.ACTIVA) {
+            throw new RuntimeException("La cuenta ya está activa");
         }
 
-        cuenta.setEstado(EstadoCuenta.INACTIVA);
+        cuenta.setEstado(EstadoCuenta.ACTIVA);
         cuenta.setFechaModificacion(LocalDateTime.now());
 
         cuentaRepository.guardar(cuenta);

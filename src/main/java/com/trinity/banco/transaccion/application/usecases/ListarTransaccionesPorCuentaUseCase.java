@@ -3,17 +3,15 @@ package com.trinity.banco.transaccion.application.usecases;
 import com.trinity.banco.transaccion.domain.model.Transaccion;
 import com.trinity.banco.cuenta.domain.ports.CuentaRepository;
 import com.trinity.banco.transaccion.domain.ports.TransaccionRepository;
-import com.trinity.banco.shared.errors.RecursoNoEncontradoException;
-import org.springframework.stereotype.Service;
+import com.trinity.banco.shared.domain.errors.RecursoNoEncontradoException;
 
 import java.util.List;
 
-@Service
-public class ListarTransaccionesPorCuentaService {
+public class ListarTransaccionesPorCuentaUseCase {
     private final TransaccionRepository transaccionRepository;
     private final CuentaRepository cuentaRepository;
 
-    public ListarTransaccionesPorCuentaService(TransaccionRepository transaccionRepository, CuentaRepository cuentaRepository) {
+    public ListarTransaccionesPorCuentaUseCase(TransaccionRepository transaccionRepository, CuentaRepository cuentaRepository) {
         this.transaccionRepository = transaccionRepository;
         this.cuentaRepository = cuentaRepository;
     }

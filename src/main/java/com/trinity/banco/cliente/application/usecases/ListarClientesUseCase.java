@@ -6,11 +6,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class ListarClientesService {
+public class ListarClientesUseCase {
     private final ClienteRepository clienteRepository;
 
-    public ListarClientesService(ClienteRepository clienteRepository) {
+    public ListarClientesUseCase(ClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
 

@@ -3,14 +3,13 @@ package com.trinity.banco.cliente.application.usecases;
 import com.trinity.banco.cliente.application.validators.ClienteValidator;
 import com.trinity.banco.cliente.domain.model.Cliente;
 import com.trinity.banco.cliente.domain.ports.ClienteRepository;
-import com.trinity.banco.shared.errors.RecursoNoEncontradoException;
-import org.springframework.stereotype.Service;
+import com.trinity.banco.shared.domain.errors.RecursoNoEncontradoException;
 
-@Service
-public class ActualizarClienteService {
+
+public class ActualizarClienteUseCase {
     private final ClienteRepository clienteRepository;
 
-    public ActualizarClienteService(ClienteRepository clienteRepository) {
+    public ActualizarClienteUseCase(ClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
 

@@ -6,22 +6,20 @@ import com.trinity.banco.transaccion.domain.model.Transaccion;
 import com.trinity.banco.transaccion.domain.model.enums.TipoTransaccion;
 import com.trinity.banco.cuenta.domain.ports.CuentaRepository;
 import com.trinity.banco.transaccion.domain.ports.TransaccionRepository;
-import com.trinity.banco.shared.errors.RecursoNoEncontradoException;
+import com.trinity.banco.shared.domain.errors.RecursoNoEncontradoException;
 import jakarta.transaction.Transactional;
-import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
 
-@Service
 @Transactional
-public class TransferirService {
+public class TransferirUseCase {
     private final CuentaRepository cuentaRepository;
     private final TransaccionRepository transaccionRepository;
 
-    public TransferirService(CuentaRepository cuentaRepository,
+    public TransferirUseCase(CuentaRepository cuentaRepository,
                              TransaccionRepository transaccionRepository) {
         this.cuentaRepository = cuentaRepository;
         this.transaccionRepository = transaccionRepository;

@@ -2,16 +2,14 @@ package com.trinity.banco.cliente.application.usecases;
 
 import com.trinity.banco.cliente.domain.ports.ClienteRepository;
 import com.trinity.banco.cuenta.domain.ports.CuentaRepository;
-import com.trinity.banco.shared.errors.RecursoNoEncontradoException;
-import org.springframework.stereotype.Service;
+import com.trinity.banco.shared.domain.errors.RecursoNoEncontradoException;
 
-@Service
-public class EliminarClienteService {
+public class EliminarClienteUseCase {
 
     private final ClienteRepository clienteRepository;
     private final CuentaRepository cuentaRepository;
 
-    public EliminarClienteService(ClienteRepository clienteRepository,
+    public EliminarClienteUseCase(ClienteRepository clienteRepository,
                                   CuentaRepository cuentaRepository) {
         this.clienteRepository = clienteRepository;
         this.cuentaRepository = cuentaRepository;
