@@ -6,6 +6,10 @@ import com.trinity.banco.cliente.infrastructure.inbound.dto.request.ActualizarCl
 import com.trinity.banco.cliente.infrastructure.inbound.dto.request.CrearClienteRequest;
 import com.trinity.banco.cliente.infrastructure.inbound.dto.response.ClienteResponse;
 import com.trinity.banco.cliente.infrastructure.inbound.mappers.ClienteMapper;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Tag(name = "Clientes")
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
@@ -38,6 +43,11 @@ public class ClienteController {
     }
 
     @PostMapping
+    @Operation(summary = "Crear un cliente", description = "Registra un nuevo cliente en el sistema con los datos proporcionados")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Cliente creado exitosamente"),
+            @ApiResponse(responseCode = "400", description = "Datos de entrada inválidos")
+    })
     public ResponseEntity<ClienteResponse> crear(@Valid @RequestBody CrearClienteRequest request) {
 
         Cliente cliente = crearClienteService.ejecutar(
@@ -53,6 +63,12 @@ public class ClienteController {
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Actualizar un cliente", description = "Actualiza los datos de un cliente existente identificado por su ID")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Cliente actualizado exitosamente"),
+            @ApiResponse(responseCode = "400", description = "Datos de entrada inválidos"),
+            @ApiResponse(responseCode = "404", description = "Cliente no encontrado")
+    })
     public ResponseEntity<ClienteResponse> actualizar(
             @PathVariable Long id,
             @Valid @RequestBody ActualizarClienteRequest request
@@ -71,6 +87,12 @@ public class ClienteController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Eliminar un cliente", description = "Elimina un cliente del sistema por su ID. Si el cliente tiene cuentas activas, no se permitirá la eliminación")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Cliente eliminado exitosamente"),
+            @ApiResponse(responseCode = "400", description = "El cliente tiene cuentas asociadas activas"),
+            @ApiResponse(responseCode = "404", description = "Cliente no encontrado")
+    })
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
 
         eliminarClienteService.ejecutar(id);
@@ -80,6 +102,11 @@ public class ClienteController {
 
 
     @GetMapping("/{id}")
+    @Operation(summary = "Obtener un cliente por ID", description = "Retorna los datos de un cliente específico")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Cliente encontrado"),
+            @ApiResponse(responseCode = "404", description = "Cliente no encontrado")
+    })
     public ResponseEntity<ClienteResponse> obtener(@PathVariable Long id) {
 
         Cliente cliente = obtenerClienteService.ejecutar(id);
@@ -90,6 +117,10 @@ public class ClienteController {
     }
 
     @GetMapping
+    @Operation(summary = "Listar todos los clientes", description = "Retorna una lista con todos los clientes registrados en el sistema")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Lista de clientes obtenida exitosamente")
+    })
     public ResponseEntity<List<ClienteResponse>> listar() {
 
         List<ClienteResponse> response = listarClientesService.ejecutar()
