@@ -1,0 +1,58 @@
+package com.trinity.banco.cliente.application.usecases;
+
+import com.trinity.banco.cliente.application.validators.ClienteValidator;
+import com.trinity.banco.cliente.domain.model.Cliente;
+import com.trinity.banco.cliente.domain.model.enums.TipoIdentificacion;
+import com.trinity.banco.cliente.domain.ports.ClienteRepository;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+public class CrearClienteUseCase {
+
+    private final ClienteRepository clienteRepository;
+
+    public CrearClienteUseCase(ClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
+    }
+
+    public Cliente ejecutar(TipoIdentificacion tipoIdentificacion,
+                            String numeroIdentificacion,
+                            String nombres,
+                            String apellidos,
+                            String email,
+                            LocalDate fechaNacimiento) {
+
+        if (clienteRepository.existePorNumeroIdentificacion(numeroIdentificacion)) {
+            throw new RuntimeException("Un cliente con este número de identificación ya existe");
+        }
+
+        if (clienteRepository.existePorEmail(email)) {
+            throw new RuntimeException("Un cliente con este email ya existe");
+        }
+
+        if (!fechaNacimiento.isBefore(LocalDate.now().minusYears(18))) {
+            throw new RuntimeException("El cliente debe ser mayor de edad");
+        }
+        if (fechaNacimiento.isBefore(LocalDate.now().minusYears(120))) {
+            throw new RuntimeException("Edad no válida");
+        }
+
+        ClienteValidator.validarEmail(email);
+        ClienteValidator.validarNombre(nombres,  apellidos);
+
+        Cliente cliente = new Cliente(
+                null,
+                tipoIdentificacion,
+                numeroIdentificacion,
+                nombres,
+                apellidos,
+                email,
+                fechaNacimiento,
+                LocalDateTime.now(),
+                LocalDateTime.now()
+        );
+
+        return clienteRepository.guardar(cliente);
+    }
+}

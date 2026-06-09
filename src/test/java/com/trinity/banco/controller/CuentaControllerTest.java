@@ -1,10 +1,10 @@
 package com.trinity.banco.controller;
 
-import com.trinity.banco.application.service.cuenta.*;
-import com.trinity.banco.domain.model.Cuenta;
-import com.trinity.banco.domain.model.enums.EstadoCuenta;
-import com.trinity.banco.domain.model.enums.TipoCuenta;
-import com.trinity.banco.rest.controller.CuentaController;
+import com.trinity.banco.cuenta.application.usecases.*;
+import com.trinity.banco.cuenta.domain.model.Cuenta;
+import com.trinity.banco.cuenta.domain.model.enums.EstadoCuenta;
+import com.trinity.banco.cuenta.domain.model.enums.TipoCuenta;
+import com.trinity.banco.cuenta.infrastructure.inbound.CuentaController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
@@ -27,17 +27,17 @@ public class CuentaControllerTest {
     private MockMvc mockMvc;
 
     @MockitoBean
-    private CrearCuentaService crearCuentaService;
+    private CrearCuentaUseCase crearCuentaService;
     @MockitoBean
-    private CancelarCuentaService cancelarCuentaService;
+    private CancelarCuentaUseCase cancelarCuentaService;
     @MockitoBean
-    private ActivarCuentaService activarCuentaService;
+    private ActivarCuentaUseCase activarCuentaService;
     @MockitoBean
-    private InactivarCuentaService inactivarCuentaService;
+    private InactivarCuentaUseCase inactivarCuentaService;
     @MockitoBean
-    private ObtenerCuentaService obtenerCuentaService;
+    private ObtenerCuentaUseCase obtenerCuentaService;
     @MockitoBean
-    private ListarCuentasPorClienteService listarPorClienteService;
+    private ListarCuentasPorClienteUseCase listarPorClienteService;
 
     private Cuenta mockCuenta(String numeroCuenta) {
         Cuenta cuenta = mock(Cuenta.class);

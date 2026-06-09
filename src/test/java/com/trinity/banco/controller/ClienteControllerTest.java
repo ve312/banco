@@ -1,9 +1,9 @@
 package com.trinity.banco.controller;
 
-import com.trinity.banco.application.service.cliente.*;
-import com.trinity.banco.domain.model.Cliente;
-import com.trinity.banco.domain.model.enums.TipoIdentificacion;
-import com.trinity.banco.rest.controller.ClienteController;
+import com.trinity.banco.cliente.application.usecases.*;
+import com.trinity.banco.cliente.domain.model.Cliente;
+import com.trinity.banco.cliente.domain.model.enums.TipoIdentificacion;
+import com.trinity.banco.cliente.infrastructure.inbound.ClienteController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
@@ -26,19 +26,19 @@ public class ClienteControllerTest {
     private MockMvc mockMvc;
 
     @MockitoBean
-    private CrearClienteService crearClienteService;
+    private CrearClienteUseCase crearClienteService;
 
     @MockitoBean
-    private ActualizarClienteService actualizarClienteService;
+    private ActualizarClienteUseCase actualizarClienteService;
 
     @MockitoBean
-    private EliminarClienteService eliminarClienteService;
+    private EliminarClienteUseCase eliminarClienteService;
 
     @MockitoBean
-    private ObtenerClienteService obtenerClienteService;
+    private ObtenerClienteUseCase obtenerClienteService;
 
     @MockitoBean
-    private ListarClientesService listarClientesService;
+    private ListarClientesUseCase listarClientesService;
 
     private Cliente mockCliente() {
         Cliente cliente = mock(Cliente.class);

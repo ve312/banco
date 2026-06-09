@@ -1,0 +1,37 @@
+package com.trinity.banco.transaccion.infrastructure.outbound.persistence.mappers;
+
+import com.trinity.banco.transaccion.domain.model.Transaccion;
+import com.trinity.banco.transaccion.infrastructure.outbound.persistence.entity.TransaccionEntity;
+
+import java.math.BigDecimal;
+
+public class TransaccionMapper {
+    public static TransaccionEntity toEntity(Transaccion transaccion) {
+        TransaccionEntity entity = new TransaccionEntity();
+
+        entity.setNumeroCuenta(transaccion.getNumeroCuenta());
+        entity.setTipoTransaccion(transaccion.getTipoTransaccion());
+        entity.setMonto(transaccion.getMonto());
+        entity.setSaldoAnterior(transaccion.getSaldoAnterior());
+        entity.setSaldoPosterior(transaccion.getSaldoPosterior());
+        entity.setFecha(transaccion.getFecha());
+        entity.setNumeroCuentaRelacionada(transaccion.getNumeroCuentaRelacionada());
+        entity.setImpuesto(transaccion.getImpuesto());
+
+        return entity;
+    }
+
+    public static Transaccion toDomain(TransaccionEntity entity) {
+        return new Transaccion(
+                entity.getId(),
+                entity.getNumeroCuenta(),
+                entity.getTipoTransaccion(),
+                entity.getMonto(),
+                entity.getSaldoAnterior(),
+                entity.getSaldoPosterior(),
+                entity.getFecha(),
+                entity.getNumeroCuentaRelacionada(),
+                entity.getImpuesto() != null ? entity.getImpuesto() : BigDecimal.ZERO
+        );
+    }
+}

@@ -1,7 +1,0 @@
-package com.trinity.banco.domain.model.enums;
-
-public enum EstadoCuenta {
-    ACTIVA,
-    INACTIVA,
-    CANCELADA
-}

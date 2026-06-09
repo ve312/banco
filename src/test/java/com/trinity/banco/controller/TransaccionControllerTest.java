@@ -1,12 +1,12 @@
 package com.trinity.banco.controller;
 
-import com.trinity.banco.application.service.transaccion.ConsignarService;
-import com.trinity.banco.application.service.transaccion.ListarTransaccionesPorCuentaService;
-import com.trinity.banco.application.service.transaccion.RetirarService;
-import com.trinity.banco.application.service.transaccion.TransferirService;
-import com.trinity.banco.domain.model.Transaccion;
-import com.trinity.banco.domain.model.enums.TipoTransaccion;
-import com.trinity.banco.rest.controller.TransaccionController;
+import com.trinity.banco.transaccion.application.usecases.ConsignarUseCase;
+import com.trinity.banco.transaccion.application.usecases.ListarTransaccionesPorCuentaUseCase;
+import com.trinity.banco.transaccion.application.usecases.RetirarUseCase;
+import com.trinity.banco.transaccion.application.usecases.TransferirUseCase;
+import com.trinity.banco.transaccion.domain.model.Transaccion;
+import com.trinity.banco.transaccion.domain.model.enums.TipoTransaccion;
+import com.trinity.banco.transaccion.infrastructure.inbound.TransaccionController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
@@ -29,16 +29,16 @@ public class TransaccionControllerTest {
     private MockMvc mockMvc;
 
     @MockitoBean
-    private ConsignarService consignarService;
+    private ConsignarUseCase consignarService;
 
     @MockitoBean
-    private RetirarService retirarService;
+    private RetirarUseCase retirarService;
 
     @MockitoBean
-    private TransferirService transferirService;
+    private TransferirUseCase transferirService;
 
     @MockitoBean
-    private ListarTransaccionesPorCuentaService listarService;
+    private ListarTransaccionesPorCuentaUseCase listarService;
 
     private Transaccion mockTransaccion(String numeroCuenta, BigDecimal monto,TipoTransaccion tipoTransaccion) {
         Transaccion transaccion = mock(Transaccion.class);
