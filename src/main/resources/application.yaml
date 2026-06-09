@@ -1,8 +1,8 @@
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/banco
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
+  config:
+    import: optional:file:.env[.properties]
+  profiles:
+    active: dev
 
   jpa:
     hibernate:
@@ -11,12 +11,3 @@ spring:
     properties:
       hibernate:
         format_sql: true
-
-server:
-  port: 8080
-
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-  api-docs:
-    path: /v3/api-docs
