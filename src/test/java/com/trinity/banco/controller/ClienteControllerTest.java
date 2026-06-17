@@ -4,6 +4,8 @@ import com.trinity.banco.cliente.application.usecases.*;
 import com.trinity.banco.cliente.domain.model.Cliente;
 import com.trinity.banco.cliente.domain.model.enums.TipoIdentificacion;
 import com.trinity.banco.cliente.infrastructure.inbound.ClienteController;
+import com.trinity.banco.shared.infrastructure.security.CustomUserDetailsService;
+import com.trinity.banco.shared.infrastructure.security.JwtProvider;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
@@ -24,6 +26,12 @@ public class ClienteControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockitoBean
+    private JwtProvider jwtProvider;
+
+    @MockitoBean
+    private CustomUserDetailsService userDetailsService;
 
     @MockitoBean
     private CrearClienteUseCase crearClienteService;
