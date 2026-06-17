@@ -1,5 +1,7 @@
 package com.trinity.banco.controller;
 
+import com.trinity.banco.shared.infrastructure.security.CustomUserDetailsService;
+import com.trinity.banco.shared.infrastructure.security.JwtProvider;
 import com.trinity.banco.transaccion.application.usecases.ConsignarUseCase;
 import com.trinity.banco.transaccion.application.usecases.ListarTransaccionesPorCuentaUseCase;
 import com.trinity.banco.transaccion.application.usecases.RetirarUseCase;
@@ -29,6 +31,12 @@ public class TransaccionControllerTest {
     private MockMvc mockMvc;
 
     @MockitoBean
+    private JwtProvider jwtProvider;
+
+    @MockitoBean
+    private CustomUserDetailsService userDetailsService;
+
+    @MockitoBean
     private ConsignarUseCase consignarService;
 
     @MockitoBean
@@ -40,7 +48,7 @@ public class TransaccionControllerTest {
     @MockitoBean
     private ListarTransaccionesPorCuentaUseCase listarService;
 
-    private Transaccion mockTransaccion(String numeroCuenta, BigDecimal monto,TipoTransaccion tipoTransaccion) {
+    private Transaccion mockTransaccion(String numeroCuenta, BigDecimal monto, TipoTransaccion tipoTransaccion) {
         Transaccion transaccion = mock(Transaccion.class);
         when(transaccion.getId()).thenReturn(1L);
         when(transaccion.getNumeroCuenta()).thenReturn(numeroCuenta);
@@ -95,8 +103,8 @@ public class TransaccionControllerTest {
 
     @Test
     void deberiaTransferir() throws Exception {
-        Transaccion t1 = mockTransaccion("123", new BigDecimal("300.00"),TipoTransaccion.CONSIGNACION);
-        Transaccion t2 = mockTransaccion("456", new BigDecimal("300.00"),TipoTransaccion.RETIRO);
+        Transaccion t1 = mockTransaccion("123", new BigDecimal("300.00"), TipoTransaccion.CONSIGNACION);
+        Transaccion t2 = mockTransaccion("456", new BigDecimal("300.00"), TipoTransaccion.RETIRO);
 
         when(transferirService.ejecutar(eq("123"), eq("456"), any())).thenReturn(List.of(t1, t2));
 
