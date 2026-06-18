@@ -1,6 +1,6 @@
 package com.trinity.banco.component.cliente;
 
-import com.trinity.banco.component.BaseComponentTest;
+import com.trinity.banco.component.AbstractBaseIntegrationTest;
 import com.trinity.banco.component.TestDataFactory;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-class ClienteComponentTest extends BaseComponentTest {
+class ClienteComponentTest extends AbstractBaseIntegrationTest {
 
     private static final String CLIENTES_PATH = "/clientes";
 

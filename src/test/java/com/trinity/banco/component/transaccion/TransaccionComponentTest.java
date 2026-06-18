@@ -1,6 +1,6 @@
 package com.trinity.banco.component.transaccion;
 
-import com.trinity.banco.component.BaseComponentTest;
+import com.trinity.banco.component.AbstractBaseIntegrationTest;
 import com.trinity.banco.component.TestDataFactory;
 import org.junit.jupiter.api.Test;
 
@@ -11,13 +11,14 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-class TransaccionComponentTest extends BaseComponentTest {
+class TransaccionComponentTest extends AbstractBaseIntegrationTest {
 
     private static final String CLIENTES_PATH = "/clientes";
     private static final String CUENTAS_PATH = "/cuentas";
     private static final String TRANSACCIONES_PATH = "/transacciones";
 
     private static final BigDecimal GMF_RATE = new BigDecimal("0.004");
+    private static int clientCounter = 0;
 
     private static class TestAccount {
         final Long clientId;
@@ -32,9 +33,16 @@ class TransaccionComponentTest extends BaseComponentTest {
     }
 
     private Long createTestClient(String token, String suffix) throws Exception {
+        clientCounter++;
+        String apellido = "Test" + suffix.replaceAll("[^A-Za-z]", "");
+        String numeroIdent = String.format("400000%04d", clientCounter);
         String json = TestDataFactory.createClienteRequestJson(
-                "CE", "400" + suffix, "Cliente", suffix,
-                "cliente." + suffix + "@test.com", LocalDate.of(1990, 1, 1)
+                "CC",
+                numeroIdent,
+                "Cliente",
+                apellido.isEmpty() ? "Test" : apellido,
+                "cliente." + suffix + "@test.com",
+                LocalDate.of(1990, 1, 1)
         );
         String response = mockMvc.perform(post(CLIENTES_PATH)
                         .contentType("application/json")

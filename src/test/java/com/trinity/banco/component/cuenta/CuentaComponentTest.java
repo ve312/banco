@@ -1,6 +1,6 @@
 package com.trinity.banco.component.cuenta;
 
-import com.trinity.banco.component.BaseComponentTest;
+import com.trinity.banco.component.AbstractBaseIntegrationTest;
 import com.trinity.banco.component.TestDataFactory;
 import org.junit.jupiter.api.Test;
 
@@ -9,17 +9,21 @@ import java.time.LocalDate;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-class CuentaComponentTest extends BaseComponentTest {
+class CuentaComponentTest extends AbstractBaseIntegrationTest {
 
     private static final String CLIENTES_PATH = "/clientes";
     private static final String CUENTAS_PATH = "/cuentas";
+    private static int clientCounter = 0;
 
     private Long createTestClient(String token, String uniqueSuffix) throws Exception {
+        clientCounter++;
+        String apellido = "Prueba" + uniqueSuffix.replaceAll("[^A-Za-z]", "");
+        String numeroIdent = String.format("300000%04d", clientCounter);
         String clienteJson = TestDataFactory.createClienteRequestJson(
                 "CC",
-                "300" + uniqueSuffix,
+                numeroIdent,
                 "Cliente",
-                "Prueba " + uniqueSuffix,
+                apellido.isEmpty() ? "Prueba" : apellido,
                 "cliente." + uniqueSuffix + "@email.com",
                 LocalDate.of(1985, 3, 10)
         );
