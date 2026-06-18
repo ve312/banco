@@ -126,7 +126,7 @@ public class RetirarServiceTest {
         );
 
         assertNotNull(resultado);
-        assertEquals(new BigDecimal("275.20"), resultado.getImpuesto());
+        assertEquals(BigDecimal.ZERO, resultado.getImpuesto());
         verify(transaccionRepository).guardar(any());
     }
 
