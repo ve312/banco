@@ -1,4 +1,4 @@
-package com.trinity.banco.Usecase.usuario;
+package com.trinity.banco.unit.usuario;
 
 import com.trinity.banco.usuario.application.usecases.EliminarUsuarioUseCase;
 import com.trinity.banco.usuario.domain.ports.UsuarioRepository;

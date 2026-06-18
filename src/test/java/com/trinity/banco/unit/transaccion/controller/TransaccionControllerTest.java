@@ -1,4 +1,4 @@
-package com.trinity.banco.controller;
+package com.trinity.banco.unit.transaccion.controller;
 
 import com.trinity.banco.shared.infrastructure.security.CustomUserDetailsService;
 import com.trinity.banco.shared.infrastructure.security.JwtProvider;

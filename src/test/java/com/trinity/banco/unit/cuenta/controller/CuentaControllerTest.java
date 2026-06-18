@@ -1,4 +1,4 @@
-package com.trinity.banco.controller;
+package com.trinity.banco.unit.cuenta.controller;
 
 import com.trinity.banco.cuenta.application.usecases.*;
 import com.trinity.banco.cuenta.domain.model.Cuenta;

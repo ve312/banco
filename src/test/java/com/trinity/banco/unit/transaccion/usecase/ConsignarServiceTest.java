@@ -1,4 +1,4 @@
-package com.trinity.banco.Usecase.transaccion;
+package com.trinity.banco.unit.transaccion.usecase;
 
 import com.trinity.banco.transaccion.application.usecases.ConsignarUseCase;
 import com.trinity.banco.cuenta.domain.model.Cuenta;

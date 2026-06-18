@@ -1,4 +1,4 @@
-package com.trinity.banco.Usecase.cuenta;
+package com.trinity.banco.unit.cuenta.usecase;
 
 import com.trinity.banco.cuenta.application.usecases.CrearCuentaUseCase;
 import com.trinity.banco.cuenta.application.util.NumeroCuentaGenerator;
