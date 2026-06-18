@@ -58,10 +58,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<ApiError> handleTypeMismatch(MethodArgumentTypeMismatchException ex) {
+        String tipo = ex.getRequiredType() != null ? ex.getRequiredType().getSimpleName() : "válido";
         String mensaje = String.format(
-                "El parámetro %s debe ser un número valido",
+                "El parámetro %s debe ser un %s",
                 ex.getName(),
-                ex.getRequiredType() != null ? ex.getRequiredType().getSimpleName() : "válido"
+                tipo
         );
 
         ApiError error = new ApiError(
