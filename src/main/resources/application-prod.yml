@@ -3,3 +3,13 @@ spring:
     show-sql: false
     hibernate:
       ddl-auto: validate
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION}
