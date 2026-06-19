@@ -15,11 +15,13 @@ env:
   JAVA_DISTRIBUTION: 'temurin'
 
 jobs:
-  build-and-test:
-    name: Build & Test
+  quality:
+    name: Quality (Build, Test & SonarCloud)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-java@v4
         with:
           java-version: ${{ env.JAVA_VERSION }}
@@ -27,14 +29,12 @@ jobs:
           cache: maven
       - name: Make Maven wrapper executable
         run: chmod +x mvnw
-      - name: Build and test with coverage
+      - name: Build, test and generate coverage
         run: ./mvnw verify -B
+      - name: SonarCloud analysis
         env:
-          DB_HOST: localhost
-          DB_PORT: 5432
-          DB_NAME: banco_test
-          DB_USER: postgres
-          DB_PASSWORD: postgres
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: ./mvnw sonar:sonar -Dsonar.token=${{ secrets.SONAR_TOKEN }} -B
       - name: Upload test reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -56,35 +56,10 @@ jobs:
           path: target/*.jar
           retention-days: 30
 
-  sonarcloud:
-    name: SonarCloud Analysis
-    needs: build-and-test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-java@v4
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: ${{ env.JAVA_DISTRIBUTION }}
-          cache: maven
-      - name: Download JaCoCo report
-        uses: actions/download-artifact@v4
-        with:
-          name: jacoco-report
-          path: target/site/jacoco/
-      - name: Make Maven wrapper executable
-        run: chmod +x mvnw
-      - name: Run SonarCloud analysis
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./mvnw sonar:sonar -Dsonar.token=${{ secrets.SONAR_TOKEN }} -B
-
   docker:
     name: Docker
     if: github.ref == 'refs/heads/main'
-    needs: [build-and-test, sonarcloud]
+    needs: [quality]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
