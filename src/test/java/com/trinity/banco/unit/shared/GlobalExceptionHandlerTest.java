@@ -84,7 +84,7 @@ class GlobalExceptionHandlerTest {
     }
 
     @Test
-    void deberia_manejar_type_mismatch() {
+    void deberia_manejar_type_mismatch_sin_tipo() {
         var ex = new org.springframework.web.method.annotation.MethodArgumentTypeMismatchException(
                 "texto", null, "id", null, null
         );
@@ -92,6 +92,18 @@ class GlobalExceptionHandlerTest {
         ResponseEntity<ApiError> response = handler.handleTypeMismatch(ex);
 
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-        assertTrue(response.getBody().getMessage().contains("parámetro"));
+        assertEquals("El parámetro id debe ser un válido", response.getBody().getMessage());
+    }
+
+    @Test
+    void deberia_manejar_type_mismatch_con_tipo_conocido() {
+        var ex = new org.springframework.web.method.annotation.MethodArgumentTypeMismatchException(
+                "texto", Integer.class, "id", null, null
+        );
+
+        ResponseEntity<ApiError> response = handler.handleTypeMismatch(ex);
+
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertEquals("El parámetro id debe ser un Integer", response.getBody().getMessage());
     }
 }
