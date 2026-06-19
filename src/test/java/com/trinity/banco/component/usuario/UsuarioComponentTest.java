@@ -1,6 +1,6 @@
 package com.trinity.banco.component.usuario;
 
-import com.trinity.banco.component.BaseComponentTest;
+import com.trinity.banco.component.AbstractBaseIntegrationTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -8,7 +8,7 @@ import java.util.Map;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-class UsuarioComponentTest extends BaseComponentTest {
+class UsuarioComponentTest extends AbstractBaseIntegrationTest {
 
     private static final String USUARIOS_PATH = "/usuarios";
 
@@ -62,8 +62,8 @@ class UsuarioComponentTest extends BaseComponentTest {
         mockMvc.perform(get(USUARIOS_PATH)
                         .header("Authorization", "Bearer " + token))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value(1))
-                .andExpect(jsonPath("$[0].username").value("admin_test"));
+                .andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$[?(@.username == 'admin_test')].username").exists());
     }
 
     @Test

@@ -1,12 +1,12 @@
 package com.trinity.banco.component.security;
 
-import com.trinity.banco.component.BaseComponentTest;
+import com.trinity.banco.component.AbstractBaseIntegrationTest;
 import org.junit.jupiter.api.Test;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-class AuthComponentTest extends BaseComponentTest {
+class AuthComponentTest extends AbstractBaseIntegrationTest {
 
     private static final String AUTH_PATH = "/auth/login";
 

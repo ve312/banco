@@ -2,21 +2,17 @@ package com.trinity.banco.component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.trinity.banco.AbstractContainerConfig;
 import com.trinity.banco.usuario.domain.model.Usuario;
 import com.trinity.banco.usuario.domain.model.enums.Rol;
 import com.trinity.banco.usuario.domain.ports.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
-import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -25,13 +21,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@AutoConfigureMockMvc
-@Testcontainers
 @Transactional
-public abstract class BaseComponentTest {
-
-    @Container
-    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16-alpine");
+@AutoConfigureMockMvc
+public abstract class AbstractBaseIntegrationTest extends AbstractContainerConfig {
 
     @Autowired
     protected MockMvc mockMvc;
@@ -45,16 +37,6 @@ public abstract class BaseComponentTest {
     protected final ObjectMapper objectMapper = new ObjectMapper()
             .findAndRegisterModules()
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-
-    @DynamicPropertySource
-    static void configureProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", postgres::getJdbcUrl);
-        registry.add("spring.datasource.username", postgres::getUsername);
-        registry.add("spring.datasource.password", postgres::getPassword);
-        registry.add("spring.jpa.hibernate.ddl-auto", () -> "create-drop");
-        registry.add("jwt.secret", () -> "testSecretKeyForComponentTestsWith256Bits!!12345678");
-        registry.add("jwt.expiration", () -> "86400000");
-    }
 
     @SuppressWarnings("unchecked")
     protected String authenticateAndGetToken(String username, String rawPassword, Rol rol) {
