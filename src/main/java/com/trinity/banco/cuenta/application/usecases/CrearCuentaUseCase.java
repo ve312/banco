@@ -7,7 +7,6 @@ import com.trinity.banco.cuenta.domain.model.enums.EstadoCuenta;
 import com.trinity.banco.cuenta.domain.model.enums.TipoCuenta;
 import com.trinity.banco.cliente.domain.ports.ClienteRepository;
 import com.trinity.banco.cuenta.domain.ports.CuentaRepository;
-import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

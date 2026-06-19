@@ -10,6 +10,8 @@ import com.trinity.banco.transaccion.application.usecases.ListarTransaccionesPor
 import com.trinity.banco.transaccion.application.usecases.RetirarUseCase;
 import com.trinity.banco.transaccion.application.usecases.TransferirUseCase;
 import com.trinity.banco.transaccion.domain.ports.TransaccionRepository;
+import com.trinity.banco.usuario.application.usecases.*;
+import com.trinity.banco.usuario.domain.ports.UsuarioRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -95,5 +97,34 @@ public class BeanConfiguration {
         return new TransferirUseCase(cuentaRepository, transaccionRepository);
     }
 
+    @Bean
+    public CrearUsuarioUseCase crearUsuarioUseCase(UsuarioRepository usuarioRepository) {
+        return new CrearUsuarioUseCase(usuarioRepository);
+    }
+
+    @Bean
+    public ActualizarUsuarioUseCase actualizarUsuarioUseCase(UsuarioRepository usuarioRepository) {
+        return new ActualizarUsuarioUseCase(usuarioRepository);
+    }
+
+    @Bean
+    public EliminarUsuarioUseCase eliminarUsuarioUseCase(UsuarioRepository usuarioRepository) {
+        return new EliminarUsuarioUseCase(usuarioRepository);
+    }
+
+    @Bean
+    public ObtenerUsuarioUseCase obtenerUsuarioUseCase(UsuarioRepository usuarioRepository) {
+        return new ObtenerUsuarioUseCase(usuarioRepository);
+    }
+
+    @Bean
+    public ListarUsuariosUseCase listarUsuariosUseCase(UsuarioRepository usuarioRepository) {
+        return new ListarUsuariosUseCase(usuarioRepository);
+    }
+
+    @Bean
+    public CambiarPasswordUseCase cambiarPasswordUseCase(UsuarioRepository usuarioRepository) {
+        return new CambiarPasswordUseCase(usuarioRepository);
+    }
 
 }

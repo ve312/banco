@@ -9,3 +9,7 @@ springdoc:
     path: /swagger-ui.html
   api-docs:
     path: /v3/api-docs
+
+jwt:
+  secret: ${JWT_SECRET:defaultSecretKeyForDevEnvironmentChangeInProduction1234}
+  expiration: ${JWT_EXPIRATION:86400000}
