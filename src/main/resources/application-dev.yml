@@ -4,6 +4,9 @@ spring:
     username: ${DB_USER}
     password: ${DB_PASSWORD}
 
+cors:
+  allowed-origins: http://localhost:5173,http://localhost:3000,http://54.226.164.38
+
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
