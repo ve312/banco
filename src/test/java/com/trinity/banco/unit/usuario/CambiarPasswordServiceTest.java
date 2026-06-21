@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -21,12 +22,16 @@ class CambiarPasswordServiceTest {
     @Mock
     private UsuarioRepository usuarioRepository;
 
+    @Mock
+    private PasswordEncoder passwordEncoder;
+
     @InjectMocks
     private CambiarPasswordUseCase cambiarPasswordService;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+        when(passwordEncoder.encode(anyString())).thenReturn("encodedNewPassword");
     }
 
     @Test
@@ -39,7 +44,8 @@ class CambiarPasswordServiceTest {
         Usuario resultado = cambiarPasswordService.ejecutar(1L, "newpassword123");
 
         assertNotNull(resultado);
-        assertEquals("newpassword123", resultado.getPassword());
+        assertEquals("encodedNewPassword", resultado.getPassword());
+        verify(passwordEncoder, times(1)).encode("newpassword123");
         verify(usuarioRepository, times(1)).guardar(usuario);
     }
 
@@ -53,6 +59,7 @@ class CambiarPasswordServiceTest {
 
         assertEquals("Usuario no encontrado con id: 99", ex.getMessage());
         verify(usuarioRepository, never()).guardar(any());
+        verify(passwordEncoder, never()).encode(anyString());
     }
 
     @Test
@@ -67,6 +74,7 @@ class CambiarPasswordServiceTest {
 
         assertEquals("La contraseña debe tener al menos 6 caracteres", ex.getMessage());
         verify(usuarioRepository, never()).guardar(any());
+        verify(passwordEncoder, never()).encode(anyString());
     }
 
     @Test
@@ -81,5 +89,6 @@ class CambiarPasswordServiceTest {
 
         assertEquals("La contraseña debe tener al menos 6 caracteres", ex.getMessage());
         verify(usuarioRepository, never()).guardar(any());
+        verify(passwordEncoder, never()).encode(anyString());
     }
 }
