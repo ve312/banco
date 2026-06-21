@@ -15,4 +15,6 @@ public interface CuentaRepository {
     List<Cuenta> listarPorClienteId(Long clienteId);
 
     boolean existePorClienteId(Long clienteId);
+
+    List<Cuenta> listarTodas();
 }

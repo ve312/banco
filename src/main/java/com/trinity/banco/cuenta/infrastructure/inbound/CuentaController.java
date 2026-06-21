@@ -8,6 +8,7 @@ import com.trinity.banco.cuenta.infrastructure.outbound.mappers.CuentaMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import java.util.List;
 @Tag(name = "Cuentas")
 @RestController
 @RequestMapping("/cuentas")
+@SecurityRequirement(name = "bearer-jwt")
 public class CuentaController {
     private final CrearCuentaUseCase crearCuentaService;
     private final CancelarCuentaUseCase cancelarCuentaService;
@@ -26,6 +28,7 @@ public class CuentaController {
     private final InactivarCuentaUseCase inactivarCuentaService;
     private final ObtenerCuentaUseCase obtenerCuentaService;
     private final ListarCuentasPorClienteUseCase listarPorClienteService;
+    private final ListarTodasLasCuentasUseCase listarTodasLasCuentasService;
 
     public CuentaController(
             CrearCuentaUseCase crearCuentaService,
@@ -33,7 +36,8 @@ public class CuentaController {
             ActivarCuentaUseCase activarCuentaService,
             InactivarCuentaUseCase inactivarCuentaService,
             ObtenerCuentaUseCase obtenerCuentaService,
-            ListarCuentasPorClienteUseCase listarPorClienteService
+            ListarCuentasPorClienteUseCase listarPorClienteService,
+            ListarTodasLasCuentasUseCase listarTodasLasCuentasService
     ) {
         this.crearCuentaService = crearCuentaService;
         this.cancelarCuentaService = cancelarCuentaService;
@@ -41,6 +45,7 @@ public class CuentaController {
         this.inactivarCuentaService = inactivarCuentaService;
         this.obtenerCuentaService = obtenerCuentaService;
         this.listarPorClienteService = listarPorClienteService;
+        this.listarTodasLasCuentasService = listarTodasLasCuentasService;
     }
 
 
@@ -65,6 +70,19 @@ public class CuentaController {
                 .body(CuentaMapper.toResponse(cuenta));
     }
 
+
+    @GetMapping
+    @Operation(summary = "Listar todas las cuentas", description = "Retorna todas las cuentas bancarias registradas en el sistema")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Lista de cuentas obtenida exitosamente")
+    })
+    public ResponseEntity<List<CuentaResponse>> listarTodas() {
+        List<CuentaResponse> response = listarTodasLasCuentasService.ejecutar()
+                .stream()
+                .map(CuentaMapper::toResponse)
+                .toList();
+        return ResponseEntity.ok(response);
+    }
 
     @GetMapping("/{numeroCuenta}")
     @Operation(summary = "Obtener cuenta por número", description = "Retorna los detalles de una cuenta bancaria dado su número de cuenta")
