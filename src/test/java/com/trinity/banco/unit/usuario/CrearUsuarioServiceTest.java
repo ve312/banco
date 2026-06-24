@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -18,12 +19,16 @@ public class CrearUsuarioServiceTest {
     @Mock
     private UsuarioRepository usuarioRepository;
 
+    @Mock
+    private PasswordEncoder passwordEncoder;
+
     @InjectMocks
     private CrearUsuarioUseCase crearUsuarioService;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+        when(passwordEncoder.encode(anyString())).thenReturn("encodedPassword");
     }
 
     @Test
@@ -41,9 +46,10 @@ public class CrearUsuarioServiceTest {
 
         assertNotNull(resultado);
         assertEquals("jperez", resultado.getUsername());
-        assertEquals("123456", resultado.getPassword());
+        assertEquals("encodedPassword", resultado.getPassword());
         assertEquals(Rol.ASESOR, resultado.getRol());
         assertTrue(resultado.isActivo());
+        verify(passwordEncoder, times(1)).encode("123456");
         verify(usuarioRepository, times(1)).guardar(any(Usuario.class));
     }
 
@@ -57,6 +63,7 @@ public class CrearUsuarioServiceTest {
 
         assertEquals("El username 'jperez' ya está en uso", ex.getMessage());
         verify(usuarioRepository, never()).guardar(any());
+        verify(passwordEncoder, never()).encode(anyString());
     }
 
     @Test
@@ -67,6 +74,7 @@ public class CrearUsuarioServiceTest {
 
         assertEquals("El username debe tener al menos 3 caracteres", ex.getMessage());
         verify(usuarioRepository, never()).guardar(any());
+        verify(passwordEncoder, never()).encode(anyString());
     }
 
     @Test
@@ -77,6 +85,7 @@ public class CrearUsuarioServiceTest {
 
         assertEquals("La contraseña debe tener al menos 6 caracteres", ex.getMessage());
         verify(usuarioRepository, never()).guardar(any());
+        verify(passwordEncoder, never()).encode(anyString());
     }
 
     @Test
@@ -87,6 +96,7 @@ public class CrearUsuarioServiceTest {
 
         assertEquals("El nombre es obligatorio", ex.getMessage());
         verify(usuarioRepository, never()).guardar(any());
+        verify(passwordEncoder, never()).encode(anyString());
     }
 
     @Test
@@ -97,5 +107,6 @@ public class CrearUsuarioServiceTest {
 
         assertEquals("El apellido es obligatorio", ex.getMessage());
         verify(usuarioRepository, never()).guardar(any());
+        verify(passwordEncoder, never()).encode(anyString());
     }
 }

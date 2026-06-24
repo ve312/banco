@@ -4,14 +4,17 @@ import com.trinity.banco.usuario.application.validators.UsuarioValidator;
 import com.trinity.banco.usuario.domain.model.Usuario;
 import com.trinity.banco.usuario.domain.model.enums.Rol;
 import com.trinity.banco.usuario.domain.ports.UsuarioRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 
 public class CrearUsuarioUseCase {
     private final UsuarioRepository usuarioRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public CrearUsuarioUseCase(UsuarioRepository usuarioRepository) {
+    public CrearUsuarioUseCase(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder) {
         this.usuarioRepository = usuarioRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Usuario ejecutar(String username, String password, String nombre, String apellido, Rol rol) {
@@ -23,10 +26,12 @@ public class CrearUsuarioUseCase {
         UsuarioValidator.validarPassword(password);
         UsuarioValidator.validarNombre(nombre, apellido);
 
+        String passwordEncriptada = passwordEncoder.encode(password);
+
         Usuario usuario = new Usuario(
                 null,
                 username,
-                password,
+                passwordEncriptada,
                 nombre,
                 apellido,
                 true,
