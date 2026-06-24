@@ -36,6 +36,9 @@ public class CuentaControllerTest {
     private CustomUserDetailsService userDetailsService;
 
     @MockitoBean
+    private ListarTodasLasCuentasUseCase listarTodasLasCuentasUseCase;
+
+    @MockitoBean
     private CrearCuentaUseCase crearCuentaService;
     @MockitoBean
     private CancelarCuentaUseCase cancelarCuentaService;

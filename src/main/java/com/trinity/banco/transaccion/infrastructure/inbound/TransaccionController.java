@@ -12,6 +12,7 @@ import com.trinity.banco.transaccion.infrastructure.inbound.mappers.TransaccionM
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,7 @@ import java.util.stream.Collectors;
 @Tag(name = "Transacciones")
 @RestController
 @RequestMapping("/transacciones")
+@SecurityRequirement(name = "bearer-jwt")
 public class TransaccionController {
     private final ConsignarUseCase consignarService;
     private final RetirarUseCase retirarService;
@@ -110,6 +112,19 @@ public class TransaccionController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+
+    @GetMapping
+    @Operation(summary = "Listar todas las transacciones", description = "Retorna todas las transacciones registradas en el sistema")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Lista de transacciones obtenida exitosamente")
+    })
+    public ResponseEntity<List<TransaccionResponse>> listarTodas() {
+        List<Transaccion> transacciones = listarService.listarTodas();
+        List<TransaccionResponse> response = transacciones.stream()
+                .map(TransaccionMapper::toResponse)
+                .toList();
+        return ResponseEntity.ok(response);
+    }
 
     @GetMapping("/cuenta/{numeroCuenta}")
     @Operation(summary = "Listar transacciones por cuenta", description = "Retorna el historial de transacciones realizadas en una cuenta específica")

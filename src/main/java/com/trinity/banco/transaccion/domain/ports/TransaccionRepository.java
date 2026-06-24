@@ -8,4 +8,6 @@ public interface TransaccionRepository {
     Transaccion guardar(Transaccion transaccion);
 
     List<Transaccion> listarPorNumeroCuenta(String numeroCuenta);
+
+    List<Transaccion> listarTodas();
 }

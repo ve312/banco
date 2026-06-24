@@ -14,6 +14,7 @@ import com.trinity.banco.usuario.application.usecases.*;
 import com.trinity.banco.usuario.domain.ports.UsuarioRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class BeanConfiguration {
@@ -73,6 +74,11 @@ public class BeanConfiguration {
     }
 
     @Bean
+    public ListarTodasLasCuentasUseCase listarTodasLasCuentasUseCase(CuentaRepository cuentaRepository) {
+        return new ListarTodasLasCuentasUseCase(cuentaRepository);
+    }
+
+    @Bean
     public ListarCuentasPorClienteUseCase listarCuentasPorClienteUseCase (CuentaRepository cuentaRepository, ClienteRepository clienteRepository){
         return new ListarCuentasPorClienteUseCase(cuentaRepository, clienteRepository);
     }
@@ -98,8 +104,8 @@ public class BeanConfiguration {
     }
 
     @Bean
-    public CrearUsuarioUseCase crearUsuarioUseCase(UsuarioRepository usuarioRepository) {
-        return new CrearUsuarioUseCase(usuarioRepository);
+    public CrearUsuarioUseCase crearUsuarioUseCase(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder) {
+        return new CrearUsuarioUseCase(usuarioRepository, passwordEncoder);
     }
 
     @Bean
@@ -123,8 +129,8 @@ public class BeanConfiguration {
     }
 
     @Bean
-    public CambiarPasswordUseCase cambiarPasswordUseCase(UsuarioRepository usuarioRepository) {
-        return new CambiarPasswordUseCase(usuarioRepository);
+    public CambiarPasswordUseCase cambiarPasswordUseCase(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder) {
+        return new CambiarPasswordUseCase(usuarioRepository, passwordEncoder);
     }
 
 }

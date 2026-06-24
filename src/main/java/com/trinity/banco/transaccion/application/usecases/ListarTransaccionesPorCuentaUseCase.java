@@ -27,4 +27,8 @@ public class ListarTransaccionesPorCuentaUseCase {
 
         return transaccionRepository.listarPorNumeroCuenta(numeroCuenta);
     }
+
+    public List<Transaccion> listarTodas() {
+        return transaccionRepository.listarTodas();
+    }
 }

@@ -32,4 +32,12 @@ public class TransaccionRepositoryAdapter implements TransaccionRepository {
                 .map(TransaccionMapper::toDomain)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<Transaccion> listarTodas() {
+        return jpaRepository.findAll()
+                .stream()
+                .map(TransaccionMapper::toDomain)
+                .collect(Collectors.toList());
+    }
 }

@@ -50,4 +50,12 @@ public class CuentaRepositoryAdapter implements CuentaRepository {
     public boolean existePorClienteId(Long clienteId) {
         return jpaRepository.existsByClienteId(clienteId);
     }
+
+    @Override
+    public List<Cuenta> listarTodas() {
+        return jpaRepository.findAll()
+                .stream()
+                .map(CuentaMapper::toDomain)
+                .collect(Collectors.toList());
+    }
 }
